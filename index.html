@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mudasir Azhar — Lead Web Developer & UI/UX Specialist | Stark Tech Portfolio</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta name="description" content="Portfolio of Mudasir Azhar, Lead Web Developer and UI/UX Designer. Custom WordPress, React, Elementor, and Stark-level frontend engineering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Sedgwick+Ave+Display&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=JetBrains+Mono:wght@500;700&family=Inter:wght@300;400;500;600;700;800&family=Josefin+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@300;400;500;600;700;800&family=Mynerve&family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // hide the illustrated desk until we know whether the 3D desk can run,
+    // so the flat pictures never flash before the 3D scene appears
+    document.documentElement.classList.add('is-booting');
+    // phones held upright get a tall desk layout (1080 × 2160 design frame)
+    window.PORTRAIT_MQ = matchMedia('(max-width: 640px) and (orientation: portrait)');
+    if (window.PORTRAIT_MQ.matches) document.documentElement.classList.add('is-portrait');
+    window.scene3dReady = new Promise((r) => {
+      const finish = (ok) => { document.documentElement.classList.remove('is-booting'); r(ok); };
+      window.__scene3dDone = finish;
+      setTimeout(() => finish(false), 6000); // safety net if the 3D script never loads
+    });
+  </script>
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="module" src="scene3d.js"></script>
+</head>
+<body>
+
+  <!-- =====================================================
+       DESK SCENE (1440 × 900 design frame)
+       ===================================================== -->
+  <main class="stage" id="stage">
+
+    <!-- desk items (stacking order = Figma layer order) -->
+    <div class="layer monitor"><div class="art"><img src="assets/desk/monitor.png" alt="" /></div></div>
+    <div class="layer desk-item tea"><div class="art"><img src="assets/desk/tea.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item pencil"><div class="art"><img src="assets/desk/pencil.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item greenbook"><div class="art"><img src="assets/desk/greenbook.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item pen"><div class="art"><img src="assets/desk/pen.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item purplebook"><div class="art"><img src="assets/desk/purplebook.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item airpods"><div class="art"><img src="assets/desk/airpods.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item bud1"><div class="art"><img src="assets/desk/bud1.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item bud2"><div class="art"><img src="assets/desk/bud2.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item glasses"><div class="art"><img src="assets/desk/glasses.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item usb"><div class="art"><img src="assets/desk/usb.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item clip1"><div class="art"><img src="assets/desk/clip1.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item clip2"><div class="art"><img src="assets/desk/clip2.png" alt="" /><div class="hit"></div></div></div>
+    <div class="layer desk-item clip3"><div class="art"><img src="assets/desk/clip3.png" alt="" /><div class="hit"></div></div></div>
+
+    <!-- navigation on the monitor screen -->
+    <nav class="nav" aria-label="Main">
+      <span class="nav__brand" id="homeBtn" role="button" tabindex="0" title="Back to the closed box">
+    <span class="arc-dot" aria-hidden="true"></span>
+    <span class="nav-name">Mudasir Azhar</span>
+    <span class="shield-badge">STARK LABS // LVL 7</span>
+  </span>
+      <button class="nav__link nav__profile" data-open="about">Profile</button>
+      <div class="nav__projects">
+        <button class="nav__link" aria-haspopup="true" aria-expanded="false" id="projectsToggle">
+          Projects
+          <svg class="nav__chev" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6 6-6" /></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <button role="menuitem" data-open="projects">UX/UI Research &amp; Design</button>
+          <button role="menuitem" data-open="apps">Products Screenshot &amp; Marketing</button>
+          <button role="menuitem" data-open="camera">Content Creator Projects</button>
+          <button role="menuitem" data-open="brand">Brand Systems</button>
+          <button role="menuitem" data-open="swatch">Other Creative Works</button>
+        </div>
+      </div>
+      <a class="nav__link nav__contact" href="mailto:mudasirazhar40@gmail.com?subject=Project%20Inquiry%20from%20Portfolio" id="contactLink">Contact</a>
+    </nav>
+
+    <!-- back to the closed box (shown once it is open) -->
+    <button class="rebox" id="rebox" type="button">close the box</button>
+
+    <!-- the box -->
+    <div class="box-shadow" id="boxShadow"></div>
+    <div class="box" id="box">
+      <div class="layer tray"><img src="assets/box/tray.png" alt="" /></div>
+
+      <div class="layer obj obj--phone" data-key="apps" style="--i:1; --tilt:4deg">
+        <div class="art"><img src="assets/box/phone.png" alt="" /><img class="obj__hover" src="assets/box/phone-hover.png" alt="" /><div class="hit" role="button" tabindex="-1" aria-label="Products screenshot design and marketing"></div></div>
+        <p class="obj__label" aria-hidden="true">Products Screenshot design<br />&amp; Marketing</p>
+      </div>
+      <div class="layer obj obj--swatch" data-key="swatch" style="--i:3; --tilt:5deg">
+        <div class="art"><img src="assets/box/swatch.png" alt="" /><img class="obj__hover" src="assets/box/swatch-hover.png" alt="" /><div class="hit" role="button" tabindex="-1" aria-label="Other creative works"></div></div>
+        <p class="obj__label" aria-hidden="true">Other<br />creative works</p>
+      </div>
+      <div class="layer obj obj--folder" data-key="projects" style="--i:2; --tilt:3deg">
+        <div class="art"><img src="assets/box/folder.png" alt="" /><img class="obj__hover" src="assets/box/folder-hover.png" alt="" /><div class="hit" role="button" tabindex="-1" aria-label="UX/UI research and design projects"></div></div>
+        <p class="obj__label" aria-hidden="true">UX/UI Research &amp; Design<br />Projects</p>
+      </div>
+      <div class="layer obj obj--camera" data-key="camera" style="--i:0; --tilt:-3deg">
+        <div class="art"><img src="assets/box/camera.png" alt="" /><img class="obj__hover" src="assets/box/camera-hover.png" alt="" /><div class="hit" role="button" tabindex="-1" aria-label="Content creator projects"></div></div>
+        <p class="obj__label" aria-hidden="true">Featured Work<br /><small>Case Studies</small></p>
+      </div>
+      <div class="layer obj obj--idcard" data-key="about" style="--i:4; --tilt:-2deg">
+        <div class="art"><img src="assets/box/idcard.png" alt="" /><img class="obj__hover" src="assets/box/idcard-hover.png" alt="" /><div class="hit" role="button" tabindex="-1" aria-label="About me"></div></div>
+        <p class="obj__label" aria-hidden="true">Developer Profile<br /><small>About Mudasir</small></p>
+      </div>
+      <div class="layer obj obj--brand" data-key="brand" style="--i:5; --tilt:-6deg">
+        <div class="art"><img src="assets/box/brand.png" alt="" /><img class="obj__hover" src="assets/box/brand-hover.png" alt="" /><div class="hit" role="button" tabindex="-1" aria-label="Brand systems"></div></div>
+        <p class="obj__label" aria-hidden="true">Brand<br />systems</p>
+      </div>
+
+      <div class="layer lid" id="lid">
+        <img src="assets/box/lid.png" alt="" />
+        <svg class="lid-deco" viewBox="0 0 919 567" aria-hidden="true" focusable="false">
+          <!-- hand-drawn stickers: one per corner zone, face beside the title -->
+          <!-- SPIDEY WEB-SHOOTER STICKER -->
+          <g class="stk marvel-stk spidey-hand-stk" transform="translate(118 112) rotate(-8)">
+            <!-- Die-cut white border -->
+            <ellipse cx="0" cy="0" rx="42" ry="44" fill="#ffffff" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.35))"/>
+            <!-- Red base glove -->
+            <circle cx="0" cy="0" r="37" fill="#CC0000"/>
+            <!-- Web grid pattern on glove -->
+            <path d="M-35,0 L35,0 M0,-35 L0,35 M-25,-25 L25,25 M25,-25 L-25,25" stroke="#111" stroke-width="1" opacity="0.4"/>
+            <circle cx="0" cy="0" r="24" fill="none" stroke="#111" stroke-width="1" opacity="0.4"/>
+            <circle cx="0" cy="0" r="14" fill="none" stroke="#111" stroke-width="1" opacity="0.4"/>
+            <!-- Web-Shooter Trigger (metallic gold & silver) -->
+            <rect x="-14" y="-8" width="28" height="16" rx="4" fill="#D4AF37" stroke="#222" stroke-width="1.2"/>
+            <circle cx="0" cy="0" r="6" fill="#00F5FF" stroke="#fff" stroke-width="1.5" class="arc-pulse"/>
+            <!-- Web spray lines -->
+            <line x1="0" y1="-8" x2="0" y2="-28" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="-5" y1="-8" x2="-18" y2="-26" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="5" y1="-8" x2="18" y2="-26" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <!-- Spidey Thwip text badge -->
+            <rect x="-18" y="16" width="36" height="13" rx="3" fill="#1A237E"/>
+            <text x="0" y="26" text-anchor="middle" font-size="8" font-weight="900" fill="#ffffff" font-family="'JetBrains Mono', monospace">THWIP!</text>
+          </g>
+          <!-- SPIDER-MAN MASK DIE-CUT STICKER -->
+          <g class="stk marvel-stk spidey-mask-stk" transform="translate(806 196) rotate(7)">
+            <!-- Die-cut white border shape -->
+            <path d="M-55,-60 C-20,-75 20,-75 55,-60 C68,-40 68,20 45,55 C25,78 0,85 -0,85 C-0,85 -25,78 -45,55 C-68,20 -68,-40 -55,-60 Z" fill="#ffffff" filter="drop-shadow(0 6px 12px rgba(0,0,0,0.45))"/>
+            <!-- Mask Crimson Red base -->
+            <path d="M-50,-56 C-18,-70 18,-70 50,-56 C62,-37 62,18 40,50 C22,72 0,78 0,78 C0,78 -22,72 -40,50 C-62,18 -62,-37 -50,-56 Z" fill="#CC0000"/>
+            <!-- Navy Blue jaw contour -->
+            <path d="M-36,44 C-20,64 0,70 0,70 C0,70 20,64 36,44 C26,56 14,64 0,64 C-14,64 -26,56 -36,44 Z" fill="#1A237E" opacity="0.85"/>
+            <!-- Webbing lines radiating from nose bridge -->
+            <g stroke="#1a1a1a" stroke-width="1.4" opacity="0.55" fill="none" stroke-linecap="round">
+              <line x1="0" y1="-8" x2="0" y2="-68"/>
+              <line x1="0" y1="-8" x2="-48" y2="-54"/>
+              <line x1="0" y1="-8" x2="48" y2="-54"/>
+              <line x1="0" y1="-8" x2="-60" y2="-12"/>
+              <line x1="0" y1="-8" x2="60" y2="-12"/>
+              <line x1="0" y1="-8" x2="-45" y2="35"/>
+              <line x1="0" y1="-8" x2="45" y2="35"/>
+              <line x1="0" y1="-8" x2="0" y2="76"/>
+              <!-- Concentric web curves -->
+              <path d="M-22,-44 Q0,-54 22,-44"/>
+              <path d="M-38,-28 Q0,-38 38,-28"/>
+              <path d="M-44,-2 Q0,-12 44,-2"/>
+              <path d="M-34,20 Q0,10 34,20"/>
+              <path d="M-20,44 Q0,36 20,44"/>
+            </g>
+            <!-- Large Iconic Spider-Man Lenses -->
+            <!-- Left Eye (outer black rim) -->
+            <polygon points="-8,-6 -44,-24 -38,12 -12,8" fill="#141414" stroke="#141414" stroke-width="3" stroke-linejoin="round"/>
+            <!-- Left Eye lens (glossy white) -->
+            <polygon points="-10,-4 -40,-20 -35,9 -13,6" fill="#ffffff"/>
+            <!-- Left Eye inner glow / reflection -->
+            <polygon points="-12,-3 -28,-14 -32,2 -14,4" fill="#00F5FF" opacity="0.35"/>
+            <!-- Right Eye (outer black rim) -->
+            <polygon points="8,-6 44,-24 38,12 12,8" fill="#141414" stroke="#141414" stroke-width="3" stroke-linejoin="round"/>
+            <!-- Right Eye lens (glossy white) -->
+            <polygon points="10,-4 40,-20 35,9 13,6" fill="#ffffff"/>
+            <!-- Right Eye inner glow / reflection -->
+            <polygon points="12,-3 28,-14 32,2 14,4" fill="#00F5FF" opacity="0.35"/>
+          </g>
+          <!-- CAPTAIN AMERICA / AVENGERS SHIELD STICKER -->
+          <g class="stk marvel-stk cap-shield-stk" transform="translate(820 462) rotate(12)">
+            <!-- Die-cut white border -->
+            <circle cx="0" cy="0" r="50" fill="#ffffff" filter="drop-shadow(0 5px 10px rgba(0,0,0,0.4))"/>
+            <!-- Outer Red ring -->
+            <circle cx="0" cy="0" r="46" fill="#CC0000"/>
+            <!-- Middle Silver ring -->
+            <circle cx="0" cy="0" r="35" fill="#E8E8E8"/>
+            <!-- Inner Red ring -->
+            <circle cx="0" cy="0" r="24" fill="#CC0000"/>
+            <!-- Center Deep Blue circle -->
+            <circle cx="0" cy="0" r="14" fill="#003A8C"/>
+            <!-- Star in center -->
+            <polygon points="0,-12 2.8,-3.8 11.4,-3.8 4.6,1.4 7.1,9.8 0,4.8 -7.1,9.8 -4.6,1.4 -11.4,-3.8 -2.8,-3.8" fill="#ffffff"/>
+            <!-- Highlight gloss curve -->
+            <path d="M-30,-25 A42,42 0 0,1 25,-30" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.35"/>
+          </g>
+          <!-- IRON MAN ARC REACTOR STICKER -->
+          <g class="stk marvel-stk ironman-arc-stk" transform="translate(102 292) rotate(-7)">
+            <!-- Die-cut white border -->
+            <circle cx="0" cy="0" r="54" fill="#ffffff" filter="drop-shadow(0 5px 10px rgba(0,0,0,0.4))"/>
+            <!-- Outer Gold rim -->
+            <circle cx="0" cy="0" r="49" fill="#B8860B"/>
+            <circle cx="0" cy="0" r="46" fill="#1a1d24"/>
+            <!-- Mechanical copper coils around perimeter (10 coils) -->
+            <g fill="#D4AF37" stroke="#333" stroke-width="0.8">
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(0)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(36)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(72)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(108)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(144)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(180)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(216)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(252)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(288)"/>
+              <rect x="-6" y="-43" width="12" height="7" rx="1.5" transform="rotate(324)"/>
+            </g>
+            <!-- Inner steel ring -->
+            <circle cx="0" cy="0" r="32" fill="#2b313d" stroke="#555" stroke-width="1"/>
+            <!-- Triangular Arc Core (Glowing Cyan) -->
+            <polygon points="0,-22 19,11 -19,11" fill="#00F5FF" opacity="0.9" stroke="#E0FFFF" stroke-width="2"/>
+            <polygon points="0,-16 14,8 -14,8" fill="#ffffff"/>
+            <!-- Central core dot -->
+            <circle cx="0" cy="0" r="6" fill="#00F5FF" filter="drop-shadow(0 0 6px #00F5FF)"/>
+            <!-- Stark Industries text -->
+            <text x="0" y="42" text-anchor="middle" font-size="7" font-weight="900" fill="#D4AF37" letter-spacing="1.2" font-family="'JetBrains Mono', monospace">STARK IND.</text>
+          </g>
+          <!-- shipping label -->
+          <g class="stk" transform="translate(84 436) rotate(-3)">
+            <rect width="236" height="80" rx="6" fill="#f6f3ee" />
+            <rect x="8" y="8" width="220" height="64" rx="3" fill="none" stroke="#141518" stroke-width="1.5" stroke-dasharray="4 3" />
+            <path d="M28 54 V26 M20 34 l8 -9 8 9 M44 54 V26 M36 34 l8 -9 8 9" fill="none" stroke="#ff5a1f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+            <text x="64" y="36" font-size="12.5" letter-spacing="1" fill="#CC0000" font-weight="800">TOP SECRET // LEVEL 7</text>
+            <text x="64" y="54" font-size="10" letter-spacing="1.2" fill="#141518" font-weight="700">AVENGERS INITIATIVE // STARK LABS</text>
+            <path d="M64 62 h1.5 M68 62 h3 M73 62 h1.5 M77 62 h4 M83 62 h1.5 M87 62 h2.5 M92 62 h1.5 M96 62 h4 M102 62 h1.5 M106 62 h3 M111 62 h1.5 M115 62 h2.5 M120 62 h4 M126 62 h1.5 M130 62 h3 M135 62 h1.5 M139 62 h4 M145 62 h1.5 M149 62 h2.5 M154 62 h1.5 M158 62 h4 M164 62 h1.5 M168 62 h3 M173 62 h1.5 M177 62 h2.5 M182 62 h4 M188 62 h1.5 M192 62 h3 M197 62 h1.5 M201 62 h4 M207 62 h1.5 M211 62 h3" stroke="#141518" stroke-width="6" />
+          </g>
+          <!-- doodles -->
+          <g class="ink">
+            <path d="M560 112 l0 -18 M551 103 l18 0" />
+            <path d="M598 84 q4 10 13 12 q-9 2 -13 12 q-4 -10 -13 -12 q9 -2 13 -12 Z" />
+          </g>
+        </svg>
+        <h1 class="scribble scribble--name">Mudasir Azhar&rsquo;s</h1>
+        <p class="scribble scribble--title">Portfolio</p>
+        <div class="layer note">
+          <div class="art note__paper"><img src="assets/box/note.png" alt="" /></div>
+          <p class="scribble scribble--note">Press to<br />OPEN</p>
+        </div>
+        <div class="hit" role="button" tabindex="0" aria-label="Press to open the portfolio box"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =====================================================
+       OVERLAY + MODALS (same 1440 × 900 frame)
+       ===================================================== -->
+  <div class="overlay" id="overlay">
+    <div class="frame">
+
+      <!-- About me ⇄ Experience -->
+      <section class="modal" data-modal="about" aria-label="About me">
+        <div class="pop profile">
+          <div class="profile__inner">
+
+            <article class="face about">
+              <h2 class="about__head" style="margin:0">Product Designer</h2>
+              <img class="about__abs about__photo" src="assets/modal/mudasir.png" alt="Portrait of Mudasir Azhar" />
+
+              <p class="about__abs about__row about__name" style="margin:0"><b>Name:</b> Mudasir Azhar</p>
+              <p class="about__abs about__row about__age" style="margin:0"><b>Role:</b> Lead Web Dev</p>
+              <p class="about__abs about__row about__edu" style="margin:0"><b>Education:</b> BS Computer Science</p>
+              <ul class="about__abs about__list about__list--l">
+                <li>WordPress &amp; WooCommerce</li>
+                <li>React &amp; Tailwind CSS</li>
+              </ul>
+              <ul class="about__abs about__list about__list--r">
+                <li>Elementor Pro &amp; UI/UX<br />Full-Stack Web Architecture</li>
+              </ul>
+
+              <p class="about__abs about__label about__tools-label" style="margin:0">Tools:</p>
+              <div class="about__abs about__icons">
+                <img src="assets/modal/figma.svg" alt="Figma" title="Figma" />
+                <img src="assets/modal/photoshop.svg" alt="Photoshop" title="Photoshop" />
+                <img src="assets/modal/claude.svg" alt="Claude" title="Claude" />
+                <img src="assets/modal/capcut.svg" alt="CapCut" title="CapCut" />
+              </div>
+
+              <p class="about__abs about__label about__social-label" style="margin:0">Social</p>
+              <div class="about__abs about__social">
+                <a href="https://linkedin.com/in/mudasir-azhar" target="_blank" rel="noopener" aria-label="LinkedIn" style="margin-right:6px"><img src="assets/modal/figma.svg" alt="LinkedIn" title="LinkedIn" style="filter:hue-rotate(200deg)" /></a>
+   <a href="https://wa.me/923176981478" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/modal/claude.svg" alt="WhatsApp" title="WhatsApp" style="filter:hue-rotate(100deg)" /></a>
+              </div>
+
+              <p class="about__abs about__bio"><b>Lead Web Developer &amp; UI/UX Designer</b> with a BS in Computer Science. Over 4+ years of experience delivering high-converting WordPress &amp; WooCommerce stores, custom React web applications, and intuitive UI/UX design systems. Known for merging pixel-perfect Marvel/Stark-level precision with lightning-fast load speeds, robust SEO, and conversion-centered user flows.</p>
+
+              <div class="about__abs about__more">
+                <button class="linkish" data-flip="exp">
+                  <span>view experience</span>
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h14M11 4l6 6-6 6" /></svg>
+                </button>
+              </div>
+            </article>
+
+            <article class="face exp" aria-label="Experience">
+              <div class="exp__scroll">
+                <!-- MUDASIR AZHAR'S REAL CAREER HISTORY -->
+                <div class="exp__job">
+                  <div class="exp__when">
+                    <h3>Freelance Lead</h3>
+                    <p>2020</p>
+                    <p>|</p>
+                    <p>Present</p>
+                  </div>
+                  <div>
+                    <h3>Lead Web Developer &amp; UI/UX Designer</h3>
+                    <ul>
+                      <li>Delivered 50+ custom WordPress and Elementor Pro websites for global clients across e-commerce, tech, and wellness industries.</li>
+                      <li>Designed full UI design systems and design tokens in Figma, cutting revision cycles by 40%.</li>
+                      <li>Integrated WooCommerce stores with Stripe, PayPal, multi-currency pricing, and automated inventory sync.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exp__job">
+                  <div class="exp__when">
+                    <h3>Little Calm Company</h3>
+                    <p>2023</p>
+                    <p>|</p>
+                    <p>2024</p>
+                  </div>
+                  <div>
+                    <h3>WordPress &amp; WooCommerce Developer</h3>
+                    <ul>
+                      <li>Architected and deployed the Spanish e-commerce portal at <b>littlecalmcompany.es</b>.</li>
+                      <li>Customized Elementor Pro checkout funnels and product archives for maximal conversion rates.</li>
+                      <li>Optimized Google PageSpeed score to 90+ through caching, asset compression, and lazy-loading.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exp__job">
+                  <div class="exp__when">
+                    <h3>HLXperts</h3>
+                    <p>2022</p>
+                    <p>|</p>
+                    <p>2023</p>
+                  </div>
+                  <div>
+                    <h3>Frontend Developer &amp; CMS Lead</h3>
+                    <ul>
+                      <li>Built and maintained the knowledge portal at <b>blog.hlxperts.com</b> using Kadence and Elementor.</li>
+                      <li>Structured custom post types and Advanced Custom Fields (ACF) for high-volume content authors.</li>
+                      <li>Implemented technical SEO with RankMath and Google Search Console, boosting organic reach.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exp__job">
+                  <div class="exp__when">
+                    <h3>BS Computer Science</h3>
+                    <p>2019</p>
+                    <p>|</p>
+                    <p>2023</p>
+                  </div>
+                  <div>
+                    <h3>Software Engineering &amp; Web Systems</h3>
+                    <ul>
+                      <li>Earned Bachelor of Science in Computer Science with focus on software engineering, web technologies, and HCI.</li>
+                      <li>Concurrently worked on commercial web applications and client projects throughout degree tenure.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <button class="back" data-flip="about">
+          <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>
+          back
+        </button>
+        <button class="pop close about-close" data-close style="--d:2" aria-label="Close">
+          <svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg>
+        </button>
+      </section>
+
+      <!-- Apps previews -->
+      <section class="modal" data-modal="apps" aria-label="Apps previews design and marketing">
+        <div class="pop app-phone">
+          <img src="assets/modal/app-phone.png" alt="" />
+          <span class="app-island" aria-hidden="true"></span>
+          <span class="app-name" style="left:92px;top:226px" aria-hidden="true">Eluvo</span>
+          <span class="app-name" style="left:213px;top:226px" aria-hidden="true">Pausora</span>
+          <span class="app-name" style="left:92px;top:368px" aria-hidden="true">Mentation</span>
+          <button class="app-icon app-eluvo" data-case="eluvo" aria-label="Eluvo"><img src="assets/case/el_icon.webp" alt="" /></button>
+          <button class="app-icon app-pausora" data-case="pausora" aria-label="Pausora"><img src="assets/case/pa_icon.webp" alt="" /></button>
+          <button class="app-icon app-mentation" data-case="mentation" aria-label="Mentation"><img src="assets/case/me_icon.webp" alt="" /></button>
+        </div>
+        <article class="pop apps-card" style="--d:1">
+          <h2>Apps Previews<br />Design &amp; Marketing</h2>
+          <p class="company">Aivory Company Limited</p>
+          <p class="desc">I had a chance to design the App Store preview screenshots for a few apps of Aivory Company Limited, and did marketing works for 1 app that produced significant outcomes (Eluvo).</p>
+          <p class="hint">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8H2M7 3L2 8l5 5" /></svg>
+            Click the app icons in the phone to view my projects
+          </p>
+          <dl>
+            <div><dt>Year:</dt><dd>2026</dd></div>
+            <div><dt>Category:</dt><dd>Photography - Mental Health</dd></div>
+            <div><dt>Role:</dt><dd>Product Marketing - Product Screenshots Design</dd></div>
+            <div><dt>Tool &amp; Platform:</dt><dd>Figma - Reddit - Tiktok</dd></div>
+          </dl>
+        </article>
+        <button class="pop close apps-close" data-close style="--d:2" aria-label="Close">
+          <svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg>
+        </button>
+      </section>
+
+      <!-- UX/UI projects chooser -->
+      <section class="modal" data-modal="projects" aria-label="UX/UI research and design projects">
+        <button class="pop project project--littlecalm" data-case="littlecalm" aria-label="Little Calm Company — E-Commerce Store">
+          <img src="assets/case/proj_littlecalm.png" alt="Little Calm Company E-Commerce" />
+          <span class="proj-badge">E-Commerce // WordPress</span>
+        </button>
+        <button class="pop project project--hlxperts" data-case="hlxperts" style="--d:1" aria-label="HLXperts — Web Portal &amp; Blog">
+          <img src="assets/case/proj_hlxperts.png" alt="HLXperts Portal" />
+          <span class="proj-badge">Editorial // Kadence CMS</span>
+        </button>
+        <button class="pop project project--nexoraverse" data-case="nexoraverse" style="--d:2" aria-label="Nexoraverse — Streaming Platform">
+          <img src="assets/case/proj_nexoraverse.png" alt="Nexoraverse Streaming" />
+          <span class="proj-badge">Streaming // React + WP</span>
+        </button>
+        <button class="pop close projects-close" data-close style="--d:3" aria-label="Close">
+          <svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg>
+        </button>
+      </section>
+
+      <!-- Brand systems chooser -->
+      <section class="modal" data-modal="brand" aria-label="Brand systems">
+        <button class="pop brand-card brand-card--cano" data-case="cano">
+          <img src="assets/case/brand_cano.webp" width="455" height="328" alt="Preview of the CANO brand system: logo, Josefin Sans and Lato, colors" />
+          <span class="brand-card__label">CANO Brand System
+            <svg viewBox="0 0 28 24" aria-hidden="true"><path d="M2 12h22M15 3l9 9-9 9" /></svg></span>
+        </button>
+        <button class="pop brand-card brand-card--membit" data-case="membit" style="--d:1">
+          <img src="assets/case/brand_membit.webp" width="455" height="328" alt="Preview of the Membit brand system: logo, Montserrat and Inter, colors" />
+          <span class="brand-card__label">Membit Brand System
+            <svg viewBox="0 0 28 24" aria-hidden="true"><path d="M2 12h22M15 3l9 9-9 9" /></svg></span>
+        </button>
+        <button class="pop close brand-close" data-close style="--d:2" aria-label="Close">
+          <svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg>
+        </button>
+      </section>
+
+      <!-- Content creator (camera) -->
+      <section class="modal" data-modal="camera" aria-label="Content creator projects">
+        <div class="pop cam">
+          <svg class="cam__body" viewBox="0 0 1078 659" aria-hidden="true">
+            <rect x="745" y="10" width="150" height="61" fill="#2a2d34" />
+            <rect x="737" y="71" width="167" height="17" fill="#2a2d34" />
+            <rect x="929" y="71" width="104" height="17" fill="#2a2d34" />
+            <path d="M20 0H684C703 0 723 30 743 58C758 78 768 87 793 87H1058Q1078 87 1078 107V639Q1078 659 1058 659H20Q0 659 0 639V20Q0 0 20 0Z" fill="#1b1d22" />
+            <rect x="23.5" y="20.5" width="166" height="116" rx="18" fill="#0b0c0e" stroke="#2f323a" stroke-width="5" />
+            <rect x="61" y="51" width="90" height="57" rx="20" fill="#000" />
+            <ellipse cx="124" cy="72" rx="14" ry="6" fill="#fff" />
+            <rect x="853" y="160" width="210" height="479" rx="20" fill="#24262c" />
+            <circle cx="903.5" cy="218.5" r="19.5" fill="#3a3d45" />
+            <circle cx="903.5" cy="287.5" r="19.5" fill="#3a3d45" />
+            <circle cx="903.5" cy="593.5" r="19.5" fill="#3a3d45" />
+            <g class="cam__pad"><circle cx="958" cy="444" r="77" fill="#2f323a" />
+              <path d="M958 377l17 31h-34zM958 511l17-31h-34zM891 444l31-17v34zM1025 444l-31-17v34z" fill="#9a9ea8" />
+              <circle cx="958" cy="444" r="19" fill="#9a9ea8" /></g>
+          </svg>
+          <div class="cam__screen">
+            <article class="cam__item">
+              <img src="assets/case/proj_littlecalm.png" width="375" height="234" alt="Little Calm Company — E-Commerce Website" />
+              <div>
+                <h2>Little Calm Company</h2>
+                <p>Full WooCommerce store built for the Spanish wellness market. Custom Elementor design, multilingual SEO, and 60% speed increase.</p>
+                <a class="cam__link" href="https://littlecalmcompany.es" target="_blank" rel="noopener">View live site <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a>
+              </div>
+            </article>
+            <article class="cam__item">
+              <img src="assets/case/proj_nexoraverse.png" width="375" height="202" alt="Nexoraverse — Streaming Platform" />
+              <div>
+                <h2>Nexoraverse Streaming</h2>
+                <p>Modern streaming platform built on WordPress with React-powered UI components, user subscriptions, and dark-mode glassmorphic aesthetics.</p>
+                <a class="cam__link" href="https://nexoraverse.com" target="_blank" rel="noopener">View live site <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <button class="pop close cam-close" data-close style="--d:1" aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button>
+      </section>
+
+      <!-- Contact: a little email draft under the nav -->
+      <section class="modal" data-modal="contact" aria-label="Contact">
+        <div class="pop contact">
+          <p class="contact__row">Email: <a href="mailto:mudasirazhar40@gmail.com?subject=Project%20Inquiry%20from%20Portfolio">mudasirazhar40@gmail.com</a></p>
+          <p class="contact__row">Subject: Contact me!</p>
+          <p class="contact__links"><a href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a><a href="#" data-link="resume" target="_blank" rel="noopener">Resume</a></p>
+          <p class="contact__row contact__sign">Best,<br />Mudasir Azhar</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Case studies (scroll inside the overlay) — CASES:START -->
+    <section class="case" data-case-view="littlecalm" aria-label="Sport Coaching Dashboard Redesign"><article class="case__card"><div class="cs"><div class="cs-exact" style="height:5482px"><h2 class="x cs-title" data-nav="Overview" style="left:59px;top:96px;width:625px">Sport Coaching Dashboard Redesign</h2><p class="x cs-sub" style="left:59.0px;top:221.0px;width:700px">Next Play Games - Sportlingo (now SportX1)</p><p class="x cs-lead" style="left:59px;top:305px;width:551px">Sportlingo is a platform owned by Next Play Games Inc. that helps coaches to manage their teams more easily and efficiently. It is recently rebranded into Sportx1. This project is also an assessment that landed me the internship at Next Play Games.</p><dl class="x cs-meta" style="left:59px;top:526px"><div><dt>Time:</dt><dd>April 2026</dd></div><div><dt>Category:</dt><dd>Sport - Education</dd></div><div><dt>Role:</dt><dd>User Interview - UX/UI Research - UI Design</dd></div><div><dt>Tool:</dt><dd>Figma</dd></div></dl><img class="x" src="assets/case/np_laptop.webp" width="618" height="520" style="left:540px;top:16.5px" alt="Redesigned Sportlingo dashboard on a laptop" loading="lazy" /><img class="x" src="assets/case/np_phone.webp" width="360" height="305" style="left:787.5px;top:348px" alt="Redesigned Sportlingo dashboard on a phone" loading="lazy" /><h3 class="x cs-h" data-nav="Problem" style="left:57.0px;top:731.0px">Stage 1: Observation</h3><img class="x" src="assets/case/np_slide.webp" width="905" height="509" style="left:128px;top:749px" alt="Annotated Sportlingo dashboard: clean layout, icon expectation error and navigation friction" loading="lazy" /><img class="x" src="assets/case/np_img5423.webp" width="243" height="293" style="left:328px;top:1282px" alt="Sportlingo settings menu" loading="lazy" /><img class="x" src="assets/case/np_img5422.webp" width="244" height="159" style="left:594px;top:1282px" alt="Account area in the top right of the dashboard" loading="lazy" /><p class="x" style="left:594px;top:1455px;width:475px">The account section on the top right of the page does not lead to the account page, or any pop-up window. Users have to go to the settings page to access account management, which is also unclear navigation since there is no guiding word like “account” or a profile icon</p><img class="x" src="assets/case/np_btn_invite.webp" width="172" height="47" style="left:298px;top:1646px" alt="Invite Players button" loading="lazy" /><img class="x" src="assets/case/np_btn_lesson.webp" width="173" height="40" style="left:493px;top:1650px" alt="Add Lesson Pack button" loading="lazy" /><img class="x" src="assets/case/np_btn_assign.webp" width="172" height="47" style="left:690px;top:1646px" alt="Add Assignment button" loading="lazy" /><p class="x" style="left:422px;top:1724px;width:317px">The buttons (which have the same function) are not in the same design (different size, text size, boldness)</p><h3 class="x cs-h cs-in cs-in--stage" data-nav="Research" style="left:57px;top:1878px">Stage 2: User Interview and Insights</h3><p class="x cs-in cs-in--time" style="left:91.0px;top:1979.0px;width:306px"><b>Interview time</b>: ~20-30 minutes</p><div class="x cs-usercard" style="left:91px;top:2025px;width:306px;height:338px" aria-hidden="true"></div><p class="x cs-in cs-center" style="left:91.0px;top:2043.0px;width:306px"><b>User’s background:</b></p><p class="x cs-in" style="left:107px;top:2082px;width:274px"><b>Name</b>: Dung Bui<br /><b>Age</b>: 20<br /><b>Occupation:</b> Student/Part-time Basketball Coach<br /><br /><b>Experience:</b> 13 years playing basketball | 3 years coaching basketball<br /><br /><b>Coaching tools</b>: Google Documents (Sheet, Docs,...)</p><div class="x cs-bubble" style="left:477px;top:2000px;width:525px;height:126px" aria-hidden="true"></div><span class="x cs-qmark" style="left:436px;top:1988px" aria-hidden="true">&ldquo;</span><span class="x cs-qmark" style="left:1014px;top:2098px" aria-hidden="true">&rdquo;</span><blockquote class="x cs-bubble__text" style="left:498.0px;top:2034.0px;width:483px">I need an overview that tells me "how this student is doing" at a glance</blockquote><div class="x cs-bubble" style="left:477px;top:2199px;width:525px;height:126px" aria-hidden="true"></div><span class="x cs-qmark" style="left:436px;top:2187px" aria-hidden="true">&ldquo;</span><span class="x cs-qmark" style="left:1014px;top:2297px" aria-hidden="true">&rdquo;</span><blockquote class="x cs-bubble__text" style="left:498px;top:2218px;width:483px">It takes me 5–6 days to remember ~20 students’ names. This is the hardest and most time-consuming part</blockquote><p class="x cs-in cs-in--h" style="left:58px;top:2435px;width:1042px">Observation:</p><p class="x cs-in" style="left:58px;top:2477px;width:1042px">The user does not have many difficulties while experiencing the Dashboard. He thinks the information is displayed clearly and he understands all the features presented. There is a little bit of confusion in the Coach/Player IQ feature.</p><p class="x cs-in cs-in--h" style="left:57px;top:2558px;width:1044px">Insights:</p><ul class="x cs-in cs-dots" style="left:81.0px;top:2600.0px;width:1022px"><li><b>Priority of Individual over Team Data:</b> While the dashboard focuses on team-wide stats, the coach's primary need is to see individual student information first, specifically their position, disciplinary commitment, and attendance/absence counts immediately upon logging in</li></ul><ul class="x cs-in cs-dots" style="left:81.0px;top:2696.0px;width:1030px"><li><b>Identity is a Feature:</b> The insight that remembering names is a coach's "hardest" task changes the product's priority from just "tracking data" to "managing people"</li></ul><ul class="x cs-in cs-dots" style="left:81.0px;top:2768.0px;width:1030px"><li><b>Vertical vs. Horizontal Hierarchy:</b> The interview revealed that a list-based format (names on the left, metrics/percentages on the right) is preferred over the current card-based horizontal rows for better data clarity</li></ul><p class="x cs-in cs-in--h" style="left:71px;top:2887px;width:300px">Pain Points:</p><ul class="x cs-in cs-dots" style="left:85px;top:2926px;width:310px"><li>&nbsp;The current horizontal card-based layout on the Overview screen (as seen in the sources) is perceived as difficult to scan quickly for data</li></ul><ul class="x cs-in cs-dots" style="left:85px;top:3045px;width:310px"><li>The overview page needs more features to evaluate players quickly</li></ul><ul class="x cs-in cs-dots" style="left:85.0px;top:3124.0px;width:310px"><li>Attendance is a required task for coaches every day, so it needs to be reached quickly and easily</li></ul><p class="x cs-in cs-in--h" style="left:423px;top:2887px;width:300px">Recommendations:</p><ul class="x cs-in cs-dots" style="left:436px;top:2926px;width:305px"><li>Use a list-view or table format where student names are anchored on the left and key metrics (Attendance %, Progress, Discipline) are on the right</li></ul><ul class="x cs-in cs-dots" style="left:436px;top:3045px;width:305px"><li>Add a Player Management table, remove Manage Roster box</li></ul><ul class="x cs-in cs-dots" style="left:436.0px;top:3122.0px;width:305px"><li>Add a small "Today Attendance" to the player management table on the Overview page where the coach can simply check off names</li></ul><p class="x cs-in cs-in--h" style="left:766.0px;top:2887.0px;width:300px">Rationale:</p><ul class="x cs-in cs-dots" style="left:785px;top:2926px;width:308px"><li>Coaches need to compare players quickly. A list format is more efficient for scanning 20+ names than horizontal blocks</li></ul><ul class="x cs-in cs-dots" style="left:785.0px;top:3043.0px;width:308px"><li>Coaches would want to see student information first at a glance</li></ul><ul class="x cs-in cs-dots" style="left:785px;top:3118px;width:303px"><li>Attendance is a daily task currently done in external sheets. Bringing this to the "front door" of the dashboard makes it an "everyday" tool</li></ul><h3 class="x cs-h cs-in cs-in--stage" data-nav="Final Product" style="left:57px;top:3299px">Stage 3: Redesign</h3><img class="x" src="assets/case/np_desktop.webp" width="507" height="322" style="left:57px;top:3392px" alt="Original and redesigned overview page, desktop" loading="lazy" /><img class="x" src="assets/case/np_mobile.webp" width="500" height="321" style="left:601.5px;top:3392.5px" alt="Redesigned overview page, mobile" loading="lazy" /><p class="x cs-in" style="left:57px;top:3767px;width:1042px">2nd version</p><img class="x cs-framed" src="assets/case/np_v2a.webp" width="512" height="320" style="left:57px;top:3811px" alt="Second version of the dashboard redesign" loading="lazy" /><img class="x cs-framed" src="assets/case/np_v2b.webp" width="512" height="320" style="left:591px;top:3811px" alt="Second version of the dashboard redesign, alternate view" loading="lazy" /><img class="x" src="assets/case/np_final.webp" width="930" height="450" style="left:176px;top:4238px" alt="Final Sportlingo redesign on a phone and a laptop" loading="lazy" /><h3 class="x cs-h" data-nav="Reflection" style="left:61.0px;top:4775.0px">Stage 4: Reflection</h3><p class="x cs-lead cs-center cs-ink cs-medium" style="left:83.0px;top:4882.0px;width:1045px">What I'd do differently with more time or more interviewees?</p><div class="x cs-reflect-box" style="left:202px;top:4933px;width:806px;height:227px" aria-hidden="true"></div><img class="x" src="assets/case/np_refl1.webp" width="213" height="195" style="left:213px;top:4949px" alt="Illustration of a person at a laptop surrounded by profile cards" loading="lazy" /><p class="x cs-refl-t" style="left:453.0px;top:5006.0px;width:538px"><b>Expand User Base:</b> Interview more coaches across a wider range of levels (beginner, professional,...) and more environments (schools, private academies,...) to cross-reference insights</p><div class="x cs-reflect-box" style="left:202px;top:5183px;width:806px;height:201px" aria-hidden="true"></div><p class="x cs-refl-t" style="left:213.0px;top:5257.0px;width:510px"><b>Validate Solution:</b> Conduct direct Usability Testing on the Prototype instead of just evaluating the current static interface</p><img class="x" src="assets/case/np_refl2.webp" width="217.5" height="169.5" style="left:747px;top:5200px" alt="Illustration of two people reviewing results beside a target" loading="lazy" /></div><footer class="cs-end"><p class="cs-thanks">Thanks for reading!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div><button class="cs-back" data-back><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>Back to UX/UI projects</button></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+
+    <section class="case" data-case-view="nexoraverse" aria-label="MIMY Photobooth"><article class="case__card"><div class="cs"><div class="cs-exact" style="height:4550px"><h2 class="x cs-title" data-nav="Overview" style="left:59px;top:124px;width:625px">MIMY Photobooth</h2><p class="x cs-sub" style="left:57.0px;top:196.0px;width:700px">Personal Project</p><p class="x cs-lead" style="left:59px;top:305px;width:551px">This is a website I created after meeting some inconvenience when I tried this new trend on social media - the meme photobooth. I thought that maybe I can make something that is cute and allow me to hop on this trend quickly, anywhere, anytime.</p><dl class="x cs-meta" style="left:59px;top:516px"><div><dt>Year:</dt><dd>2026</dd></div><div><dt>Category:</dt><dd>Entertainment</dd></div><div><dt>Role:</dt><dd>UX/UI Research - UI Design</dd></div><div><dt>Tool:</dt><dd>Figma - Claude</dd></div></dl><a class="x cs-link" href="#" data-link="mimy-site" target="_blank" rel="noopener" style="left:57px;top:229px">Link to website <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a><img class="x" src="assets/case/mi_landing.webp" width="334.5" height="209" style="left:642px;top:67px" alt="MIMY Photobooth landing page" loading="lazy" /><img class="x" src="assets/case/mi_pose.webp" width="329.5" height="206" style="left:773px;top:252px" alt="MIMY Photobooth choose-pose screen" loading="lazy" /><img class="x" src="assets/case/mi_print.webp" width="318" height="198.5" style="left:642px;top:436px" alt="MIMY Photobooth printing and download screen" loading="lazy" /><h3 class="x cs-h" style="left:57.0px;top:764.0px">Firstly what is this trend?</h3><p class="x cs-lead" style="left:57px;top:831px;width:1045px">In the last 2 years, photobooths have been blowing up, attracting many young people since they provide a fun and interesting experience. Over time, photobooths did not stop at a place to take photos, they developed with better quality and interesting concepts. Posing with the popular memes is one of them.</p><img class="x" src="assets/case/mi_pinterest.webp" width="667" height="417" style="left:106px;top:971px" alt="Pinterest search results for meme photobooth ideas" loading="lazy" /><img class="x" src="assets/case/mi_instagram.webp" width="193" height="417" style="left:826px;top:971px" alt="Instagram search for meme photobooth ideas on a phone" loading="lazy" /><p class="x cs-lead" style="left:57px;top:1444px;width:1045px">Some photobooths have built-in templates for taking the photos directly. Some people just find the memes somewhere on the internet, and do some editing after getting the photos from the booths.</p><h3 class="x cs-h" data-nav="Problem" style="left:57.0px;top:1579.0px">Stage 1: Problem</h3><p class="x cs-lead" style="left:57px;top:1632px;width:1045px">During a trip recently, I suddenly had the feeling to do this trend. But I did not want to spend time finding a photobooth, going to it and spending money. So I went on the internet to find the meme I wanted and took photos following that meme. That experience was obviously not like going to a photobooth at all, and it took me a little time to edit the final result.</p><img class="x" src="assets/case/mi_flow.webp" width="678" height="120" style="left:241px;top:1803px" alt="Find a meme, take the photo, then edit it" loading="lazy" /><h3 class="x cs-h" data-nav="Research" style="left:57px;top:2044px">Stage 2: UX/UI Research</h3><p class="x cs-lead" style="left:57.0px;top:2124.0px;width:1045px">To come up with the general idea about how my photobooth website will look like, I went over a few current websites with the same function. I also used my own knowledge from the photobooth experience in the past. Finally, I was able to decide the color tone, typography, elements and the UX flow.</p><img class="x" src="assets/case/mi_beautyplus.webp" width="465" height="290" style="left:57px;top:2312px" alt="BeautyPlus online photobooth reference" loading="lazy" /><img class="x" src="assets/case/mi_ref1.webp" width="200" height="266" style="left:584px;top:2263px" alt="Old Friend photobooth storefront" loading="lazy" /><img class="x" src="assets/case/mi_ref3.webp" width="196" height="261" style="left:906px;top:2263px" alt="Photo strips displayed inside a photobooth" loading="lazy" /><img class="x" src="assets/case/mi_ref2.webp" width="195" height="266" style="left:744px;top:2391px" alt="Photobooth with a red curtain" loading="lazy" /><h3 class="x cs-h" data-nav="Final Product" style="left:57.0px;top:2753.0px">Stage 3: Final Product</h3><p class="x cs-lead" style="left:57px;top:2850px;width:1045px">I design the UI in Figma, then I use Claude Code to execute the design with code files (html and css).</p><img class="x" src="assets/case/mi_frames.webp" width="1045" height="674" style="left:57px;top:2910px" alt="MIMY Photobooth UI screens designed in Figma: start, choose layout, choose poses, have fun posing and download" loading="lazy" /><video class="x cs-exact-video" style="left:165px;top:3632px;width:830px;height:519px" src="assets/video/mimy-final.mp4" poster="assets/case/mi_poster.webp" width="1842" height="1080" playsinline preload="metadata"></video><button class="x cs-play" style="left:165px;top:3632px;width:830px;height:519px" aria-label="Play the MIMY Photobooth video"></button><a class="x cs-link" href="#" data-link="mimy-site" target="_blank" rel="noopener" style="left:507px;top:4175px">Link to website <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a><h3 class="x cs-h" data-nav="Reflection" style="left:57px;top:4271px">Stage 4: Reflection</h3><p class="x cs-lead" style="left:57px;top:4368px;width:1045px">The website was enjoyed by many of my friends. I am planning to add more features like stickers, camera filters so people can have more fun with it. Furthermore, I can try to promote it on social media very soon</p></div><footer class="cs-end"><p class="cs-thanks">Thanks for reading!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div><button class="cs-back" data-back><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>Back to UX/UI projects</button></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+
+    <section class="case" data-case-view="hlxperts" aria-label="Resipe: Smart Cooking App"><article class="case__card"><div class="cs"><div class="cs-exact" style="height:5970px"><h2 class="x cs-title" data-nav="Overview" style="left:59px;top:96px;width:520px">Resipe: Smart Cooking App</h2><p class="x cs-sub" style="left:59.0px;top:219.0px;width:700px">Personal Project</p><p class="x cs-lead" style="left:59px;top:288px;width:551px">Resipe is my personal project, to create a social media application for cooking content. It is an application that allows users to post food recipes, and each post will act like an interactive digital note for people to use and successfully make a dish. Anyone can share any kind of recipe they want, and they can freely explore and choose according to their preference.</p><dl class="x cs-meta" style="left:59px;top:516px"><div><dt>Time:</dt><dd>March 2026</dd></div><div><dt>Category:</dt><dd>Cooking - Social</dd></div><div><dt>Role:</dt><dd>User Research - UI Design</dd></div><div><dt>Tool:</dt><dd>Figma</dd></div></dl><img class="x" src="assets/case/re_hero1.webp" width="160" height="308" style="left:629px;top:75px" alt="Resipe home screen: recipe of the day and recipes for you" loading="lazy" /><img class="x" src="assets/case/re_hero2.webp" width="154" height="308" style="left:789px;top:180px" alt="Resipe recipe screen: Katsu Curry ingredients and cooking process" loading="lazy" /><img class="x" src="assets/case/re_hero3.webp" width="155" height="308" style="left:945px;top:298px" alt="Resipe grocery list screen" loading="lazy" /><h3 class="x cs-h" data-nav="Problem" style="left:64.0px;top:736.0px">Stage 1: Problem</h3><p class="x cs-lead" style="left:64px;top:797px;width:1045px">Many people struggle with cooking after long workdays or lack confidence in preparing meals. Some others just have a love for this activity, they have experience with high quality dishes, want to challenge themselves and want to share those with the world. Existing recipe platforms often function as static recipe libraries. Resipe aims to transform recipes into interactive digital cooking notes that support real-time preparation, personalization, and social sharing.</p><h3 class="x cs-h" data-nav="Research" style="left:64.0px;top:1027.0px">Stage 2: User Research</h3><div class="x cs-lead" style="left:64px;top:1093px;width:1045px"><span class="cs-medium">Target Users:</span><br />Primary<ul class="cs-tight cs-tight--re"><li>Age: 12 - 34 (teenagers - millennials)</li><li>Occupation: Busy workers, Students, Chefs</li><li>Location: Everywhere</li><li>Behaviors: cook at home regularly, seek convenience and time-saving solutions, do a lot of activities on their mobile phones</li></ul>Secondary:<ul class="cs-tight cs-tight--re"><li>Age: 24 - 54</li><li>Occupation: Workers, Chefs</li><li>Location: Everywhere</li><li>Behaviors: Cooking enthusiasts, enjoy experimenting, want to document and share personal recipes</li></ul>Psychographics:<ul class="cs-tight cs-tight--re"><li>Value efficiency</li><li>Enjoy creative self-expression</li><li>Interested in food culture</li><li>Prefer mobile-first solutions</li></ul></div><p class="x cs-lead" style="left:65.0px;top:1608.0px;width:1045px">Storyboard:</p><img class="x" src="assets/case/re_story.webp" width="1045" height="698" style="left:64px;top:1644px" alt="Storyboard for the Resipe cooking app. After a full workday, Anh wants to cook a nutritious meal quickly so he can eat healthy and still have time to rest. Step 1: Anh opens Resipe and selects the 30-minute healthy meals category. Step 2: He sorts recipes by calorie count and chooses a high-protein stir-fry recommended by the app. Step 3: The recipe displays estimated cooking time and nutritional information clearly. Step 4: While cooking, Anh follows step-by-step mode with large touch buttons for easy navigation. Step 5: He checks off ingredients and uses the built-in timer for cooking intervals. Step 6: After finishing, he saves the recipe to his weekly meal prep collection." loading="lazy" /><h3 class="x cs-h" data-nav="Style Guide" style="left:64.0px;top:2413.0px">Stage 3: Style Guide</h3><img class="x" src="assets/case/re_style.webp" width="1032" height="1382" style="left:64px;top:2512px" alt="Resipe style guide: main logo; Raleway headlines and body text; primary colors #FFF9E2, #2C5434 and #964C02; secondary colors #FFFDF6, #6B8E23, #BC412B, #454545 and #000000; primary, secondary and regular text buttons in Raleway 16px." loading="lazy" /><h3 class="x cs-h" data-nav="UI Design" style="left:64.0px;top:4016.0px">Stage 4: UI Design</h3><p class="x cs-lead" style="left:73.0px;top:4099.0px;width:1016px">Sketch prototype</p><img class="x" src="assets/case/re_sketch.webp" width="1016" height="430" style="left:72px;top:4149px" alt="Hand-drawn sketches of the Resipe home, recipe, and FAQ and support screens with notes on each interaction" loading="lazy" /><p class="x cs-lead" style="left:65.0px;top:4638.0px;width:1045px">Final Design</p><img class="x" src="assets/case/re_f5.webp" width="292" height="562" style="left:72px;top:4708px" alt="Final Resipe home screen" loading="lazy" /><img class="x" src="assets/case/re_f4.webp" width="281" height="562" style="left:444px;top:4708px" alt="Final Resipe recipe screen: let&#x27;s start cooking" loading="lazy" /><img class="x" src="assets/case/re_f3.webp" width="283" height="562" style="left:805px;top:4708px" alt="Final Resipe grocery list screen" loading="lazy" /><img class="x" src="assets/case/re_f1.webp" width="271" height="545" style="left:258px;top:5327px" alt="Final Resipe empty grocery list: add a recipe you want to go shopping for" loading="lazy" /><img class="x" src="assets/case/re_f2.webp" width="281" height="560" style="left:626px;top:5312px" alt="Final Resipe FAQ and support screen" loading="lazy" /></div><footer class="cs-end"><p class="cs-thanks">Thanks for reading!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div><button class="cs-back" data-back><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>Back to UX/UI projects</button></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+
+    <section class="case" data-case-view="eluvo" aria-label="Eluvo: Retro Film Camera"><article class="case__card"><div class="cs"><div class="cs-exact" style="height:2282px"><img class="x" src="assets/case/el_icon.webp" width="181" height="181" style="left:57px;top:35px" alt="Eluvo app icon" loading="lazy" /><h2 class="x cs-title cs-title--sm" data-nav="Overview" style="left:271px;top:35px;width:760px">Eluvo: Retro Film Camera</h2><a class="x cs-link" href="#" data-link="eluvo-site" target="_blank" rel="noopener" style="left:271px;top:86px">View app website <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a><p class="x cs-lead" style="left:271px;top:126px;width:682px">As a person who has a big passion for film photography, I took the opportunity to plan and execute the marketing strategies for this film camera simulation app.</p><h3 class="x cs-h" data-nav="Plan" style="left:57px;top:287px">Marketing Plan</h3><p class="x" style="left:57px;top:353px;width:1045px">This is a small startup company, so my plan has to prioritize minimizing the cost as much as possible:</p><ul class="x cs-tight" style="left:57px;top:393px;width:1045px"><li>Posting and commenting in suitable communities on different social media platforms (Reddit, X,...) to increase installations.</li><li>Launch UGC by micro-influencers who are active on popular platforms like TikTok/Instagram Reels.</li><li>Prepare discount and premium codes for interested users and influencers.</li></ul><h3 class="x cs-h" data-nav="Execution" style="left:57px;top:521px">Execution</h3><p class="x" style="left:57px;top:594px;width:1045px">The first plan was the most ineffective plan, since it took time to learn the rules and algorithms and upload posts every day. Meanwhile this could not significantly increase the popularity, installations and revenue. However, getting a few installations, review trades, and direct feedback from people in the field brought its own benefit for the team to improve the app.</p><img class="x" src="assets/case/el_s1.webp" width="339" height="314" style="left:57px;top:729px" alt="Eluvo post on Reddit" loading="lazy" /><img class="x" src="assets/case/el_s2.webp" width="339" height="314" style="left:426px;top:729px" alt="Comments replying to Eluvo posts on Reddit" loading="lazy" /><img class="x" src="assets/case/el_s3.webp" width="306" height="315" style="left:796px;top:729px" alt="Eluvo post on X" loading="lazy" /><p class="x" style="left:57px;top:1095px;width:1045px">UGC is definitely a better approach. With my 6 years of experience in film photography, I can find and reach out to several micro-influencers who have the same hobby. I introduced the app to them and gave them a free lifetime code. When they accepted the invitation, we worked together on the script, reviewing and uploading. The video gained a good amount of engagement (<b>39.4k views, 47 comments, ~4k saved</b>, and <b>~1.9k shares</b>). Eluvo started to gain a lot of attention and feedback from users after that, and has grown a lot bigger now.</p><a class="x cs-link" href="#" data-link="eluvo-ugc" target="_blank" rel="noopener" style="left:57px;top:1216px">View UGC video on TikTok <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a><h3 class="x cs-h" data-nav="Impact" style="left:57px;top:1292px">Impact (Vietnam Region)</h3><div class="x cs-stat" style="left:166px;top:1373px;width:409px;height:148px"><p class="cs-label">Before:</p><ul class="cs-tight"><li>Very few installations</li><li>No ratings and reviews</li><li>No revenue</li></ul></div><div class="x cs-stat" style="left:617px;top:1373px;width:409px;height:148px"><p class="cs-label">Now:</p><ul class="cs-tight"><li>&gt;40k installations</li><li>1.2k ratings (4.9) with positive reviews</li><li>~5K revenue last month</li><li>171,744 film rolls developed in app</li></ul></div><img class="x" src="assets/case/el_store.webp" width="246" height="155" style="left:58px;top:1576px" alt="Eluvo on the App Store: 4.9 stars from 1.2K ratings" loading="lazy" /><img class="x" src="assets/case/el_review1.webp" width="237" height="139" style="left:58px;top:1768px" alt="App Store review of Eluvo" loading="lazy" /><img class="x" src="assets/case/el_review2.webp" width="195" height="92" style="left:341px;top:1576px" alt="App Store review of Eluvo" loading="lazy" /><img class="x" src="assets/case/el_review3.webp" width="195" height="113" style="left:341px;top:1685px" alt="App Store review of Eluvo" loading="lazy" /><img class="x" src="assets/case/el_review4.webp" width="195" height="92" style="left:341px;top:1815px" alt="App Store review of Eluvo" loading="lazy" /><img class="x" src="assets/case/el_chart.webp" width="530" height="331" style="left:572px;top:1576px" alt="171,744 film rolls developed in the app" loading="lazy" /><h3 class="x cs-h" data-nav="Reflection" style="left:58px;top:1991px">Reflection</h3><p class="x" style="left:58px;top:2064px;width:1045px">Building and executing a Marketing Plan for a small, new product requires you to have a deep understanding about it. Even better if you love that product.<br />More importantly, you have to be patient, because the process usually takes time and will not gain great results right away.<br />Nowadays, marketing plans which include social media ads, UGC,... should be prioritized since they are usually really effective. However, this is an expensive approach so it is important to choose the right content creators or the plan will fail easily.</p></div><footer class="cs-end"><p class="cs-thanks">Thanks for reading!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div><button class="cs-back" data-back><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>Back to app projects</button></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+
+    <section class="case" data-case-view="mentation" aria-label="Mentation brain training"><article class="case__card"><div class="cs"><div class="cs-exact" style="height:759px"><img class="x" src="assets/case/me_icon.webp" width="181" height="181" style="left:35px;top:40px" alt="Mentation app icon" loading="lazy" /><h2 class="x cs-title cs-title--app" style="left:246px;top:55px;width:800px">Mentation: Brain Training</h2><a class="x cs-link" href="#" data-link="mentation-store" target="_blank" rel="noopener" style="left:246px;top:111px">View on Mac App Store <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a><div class="x cs-strip" style="top:247px"><img src="assets/case/me_shot1.webp" width="191" height="413" alt="Mentation App Store preview screenshot 1" loading="lazy" /><img src="assets/case/me_shot2.webp" width="191" height="413" alt="Mentation App Store preview screenshot 2" loading="lazy" /><img src="assets/case/me_shot3.webp" width="191" height="413" alt="Mentation App Store preview screenshot 3" loading="lazy" /><img src="assets/case/me_shot4.webp" width="191" height="413" alt="Mentation App Store preview screenshot 4" loading="lazy" /><img src="assets/case/me_shot5.webp" width="191" height="413" alt="Mentation App Store preview screenshot 5" loading="lazy" /><img src="assets/case/me_shot6.webp" width="192" height="416" alt="Mentation App Store preview screenshot 6" loading="lazy" /></div></div><footer class="cs-end"><p class="cs-thanks">Thanks for reading!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div><button class="cs-back" data-back><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>Back to app projects</button></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+
+    <section class="case" data-case-view="pausora" aria-label="Pausora screen time and focus"><article class="case__card"><div class="cs"><div class="cs-exact" style="height:759px"><img class="x" src="assets/case/pa_icon.webp" width="181" height="181" style="left:35px;top:40px" alt="Pausora app icon" loading="lazy" /><h2 class="x cs-title cs-title--app" style="left:246px;top:60px;width:800px">Screen Time &amp; Focus: Pausora</h2><a class="x cs-link" href="#" data-link="pausora-store" target="_blank" rel="noopener" style="left:246px;top:116px">View on Mac App Store <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a><div class="x cs-strip" style="top:247px"><img src="assets/case/pa_shot1.webp" width="191" height="414" alt="Pausora App Store preview screenshot 1" loading="lazy" /><img src="assets/case/pa_shot2.webp" width="191" height="414" alt="Pausora App Store preview screenshot 2" loading="lazy" /><img src="assets/case/pa_shot3.webp" width="191" height="414" alt="Pausora App Store preview screenshot 3" loading="lazy" /><img src="assets/case/pa_shot4.webp" width="191" height="414" alt="Pausora App Store preview screenshot 4" loading="lazy" /><img src="assets/case/pa_shot5.webp" width="191" height="414" alt="Pausora App Store preview screenshot 5" loading="lazy" /><img src="assets/case/pa_shot6.webp" width="191" height="414" alt="Pausora App Store preview screenshot 6" loading="lazy" /></div></div><footer class="cs-end"><p class="cs-thanks">Thanks for reading!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div><button class="cs-back" data-back><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>Back to app projects</button></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+
+    <section class="case" data-case-view="cano" aria-label="CANO Re-branding"><article class="case__card"><div class="cs"><div class="cs-exact" style="height:4222px"><h2 class="x cs-title" data-nav="Overview" style="left:65px;top:81px;width:718px">CANO (Community Art Network of Oneonta) Re-branding</h2><a class="x cs-link" href="#" data-link="cano-site" target="_blank" rel="noopener" style="left:65px;top:256px">Link to website <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a><p class="x cs-lead" style="left:65px;top:315px;width:567px">I had the opportunity to meet and interview the Executive Director of CANO - a multi-arts organization. They run educational programs, exhibits, and large events such as festivals in Oneonta. She thinks the current brand system is really outdated, and wants a completely new one.</p><dl class="x cs-meta" style="left:65px;top:518px"><div><dt>Time:</dt><dd>April 2026</dd></div><div><dt>Category:</dt><dd>Art - Non-profit</dd></div><div><dt>Role:</dt><dd>Client Interview - Brand System Design</dd></div><div><dt>Tool:</dt><dd>Adobe Illustrator - Figma</dd></div></dl><img class="x" src="assets/case/ca_logo_old.webp" width="260" height="260" style="left:795px;top:44px" alt="Old CANO logo" loading="lazy" /><img class="x" src="assets/case/ca_logo_new.webp" width="277" height="277" style="left:794px;top:367px" alt="New CANO logo" loading="lazy" /><img class="x cs-mult" src="assets/case/ca_arrow.webp" width="91" height="91" style="left:1009px;top:311px" alt="" loading="lazy" /><h3 class="x cs-h" data-nav="Interview" style="left:57px;top:749px">Client Interview</h3><p class="x cs-lead cs-medium" style="left:57px;top:839px;width:1045px">Questions:</p><ul class="x cs-tight cs-lead" style="left:57px;top:867px;width:1045px"><li>Who is your primary target audience? Describe their age, lifestyle, and what they might value?</li><li>If your business was a person, what personality traits would they have?</li><li>Are there any colors or styles that you absolutely want to avoid and why?</li><li>When the customers read your text, should the voice sound formal, professional, casual/<wbr>conversational?</li><li>What are the top three places people will see your logo? (e.g., Website, Business Cards, Signage).</li></ul><p class="x cs-lead cs-medium" style="left:57px;top:1067px;width:1045px">Insights from answers:</p><ul class="x cs-tight cs-lead" style="left:57px;top:1095px;width:1045px"><li>Target audience spans ages and backgrounds. However, they like to be a little bit more inclusive to younger people, but also as diverse and welcoming as possible, since they are also a nonprofit.</li><li>Business Personality: slightly eccentric, fun, but also professional.</li><li>Dark colors should be avoided, they are looking for something a little bit more vibrant and uplifting. But I need to balance it to prevent the feeling of being too playful and geared towards kids.</li><li>They generally prefer a more “bold but loose” font, nothing too formal, however still professional.</li><li>They definitely want to keep the “CANO”, but maybe some font to mix it up a bit.</li></ul><h3 class="x cs-h" data-nav="Logo" style="left:65px;top:1397px">Logo Variations</h3><p class="x cs-tag" style="left:149px;top:1494px;width:300px">Main Logo</p><p class="x cs-tag" style="left:714px;top:1494px;width:300px">Horizontal Logo</p><p class="x cs-tag" style="left:714px;top:1662px;width:300px">Black &amp; White Logo</p><p class="x cs-tag" style="left:714px;top:1831px;width:300px">Icon Logo</p><img class="x" src="assets/case/ca_logo_main.webp" width="468.5" height="468.5" style="left:64.5px;top:1512.5px" alt="CANO main logo" loading="lazy" /><img class="x" src="assets/case/ca_logo_h1.webp" width="459.5" height="136.5" style="left:634px;top:1512.5px" alt="CANO horizontal logo" loading="lazy" /><img class="x" src="assets/case/ca_logo_h2.webp" width="459.5" height="136.5" style="left:634px;top:1681px" alt="CANO black and white logo" loading="lazy" /><img class="x" src="assets/case/ca_logo_i1.webp" width="203" height="112.5" style="left:634px;top:1859px" alt="CANO icon logo" loading="lazy" /><img class="x" src="assets/case/ca_logo_i2.webp" width="203" height="112.5" style="left:890.5px;top:1859px" alt="CANO black and white icon logo" loading="lazy" /><h3 class="x cs-h" data-nav="Fonts" style="left:53px;top:2074px">Fonts/Typography</h3><p class="x cs-ab" style="left:73px;top:2190px;font-family:'Josefin Sans',sans-serif" aria-hidden="true">AB</p><p class="x cs-fontname" style="left:73px;top:2248px;font-family:'Josefin Sans',sans-serif">Josefin Sans</p><p class="x cs-glyphs" style="left:73px;top:2302px;width:500px;font-family:'Josefin Sans',sans-serif">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p><p class="x cs-glyphs" style="left:73px;top:2346px;width:500px;font-family:'Josefin Sans',sans-serif">abcdefghijklmnopqrstuvwxzy</p><p class="x cs-ab" style="left:643px;top:2185px;font-family:'Lato',sans-serif" aria-hidden="true">AB</p><p class="x cs-fontname" style="left:643px;top:2249px;font-family:'Lato',sans-serif">Lato</p><p class="x cs-glyphs" style="left:643px;top:2299px;width:500px;font-family:'Lato',sans-serif">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p><p class="x cs-glyphs" style="left:643px;top:2344px;width:500px;font-family:'Lato',sans-serif">abcdefghijklmnopqrstuvwxzy</p><h3 class="x cs-h" data-nav="Colors" style="left:53px;top:2513px">Colors</h3><p class="x cs-tag cs-tag--lg" style="left:430px;top:2628px;width:300px">Primary Color Palette</p><div class="x cs-swatch" style="left:173px;top:2688px;background:#5E2D5E" aria-hidden="true"></div><div class="x cs-swatch" style="left:392px;top:2688px;background:#008080" aria-hidden="true"></div><div class="x cs-swatch" style="left:606px;top:2688px;background:#1B365D" aria-hidden="true"></div><div class="x cs-swatch" style="left:822px;top:2688px;background:#DAA520" aria-hidden="true"></div><p class="x cs-spec" style="left:174px;top:2868px;width:190px">CMYK : 0 52 0 63<br />Pantone : 7665 C<br />HSB : 300% 52% 37%<br />RGB : 94 45 94<br />Web : #5E2D5E</p><p class="x cs-spec" style="left:393px;top:2868px;width:190px">CMYK : 100 0 0 50<br />Pantone : 3145 C<br />HSB : 180% 100% 50%<br />RGB : 0 128 128<br />Web : #008080</p><p class="x cs-spec" style="left:607px;top:2868px;width:190px">CMYK : 71 42 0 64%<br />Pantone : 294 C<br />HSB : 215% 71% 36%<br />RGB : 27 54 93<br />Web : #1B365D</p><p class="x cs-spec" style="left:823px;top:2868px;width:190px">CMYK : 0 24 85 15<br />Pantone : 124 C<br />HSB : 43% 85% 85%<br />RGB : 218 165 32<br />Web : #DAA520</p><img class="x" src="assets/case/ca_icons.webp" width="1159" height="400" style="left:0px;top:3131px" alt="CANO icon set: artwork frame, origami bird, palette, paintbrush and gallery, in white on purple and in black on white" loading="lazy" /><h3 class="x cs-h cs-h--white" data-nav="Icons" style="left:53px;top:3173px">Icons</h3><h3 class="x cs-h" data-nav="Stationery" style="left:53px;top:3687px">Stationery</h3><img class="x" src="assets/case/ca_stat1.webp" width="525.5" height="300" style="left:60.5px;top:3811.5px" alt="CANO website wireframe with the new logo" loading="lazy" /><img class="x" src="assets/case/ca_stat2.webp" width="485" height="313" style="left:613.5px;top:3811.5px" alt="CANO Instagram profile with the new logo" loading="lazy" /></div><footer class="cs-end"><p class="cs-thanks">Thanks for reading!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div><button class="cs-back" data-back><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>Back to brand systems</button></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+
+    <section class="case" data-case-view="membit" aria-label="Membit Re-branding"><article class="case__card"><div class="cs"><div class="cs-exact" style="height:3488px"><h2 class="x cs-title" data-nav="Overview" style="left:65px;top:137px;width:610px">Membit Re-branding</h2><a class="x cs-link" href="#" data-link="membit-site" target="_blank" rel="noopener" style="left:65px;top:199px">Link to website <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5" /></svg></a><p class="x cs-lead" style="left:65px;top:283px;width:610px">Membit™ is an augmented story-telling platform. When you make a membit, you leave an image, a video, a 3D object, or any combination of the above, in place for other Membit users to find and enjoy. According to the business owner, the current logo does not represent the characteristics of the platform very well. He wants a branding that shows technology, art, and being “everywhere”.</p><dl class="x cs-meta" style="left:65px;top:518px"><div><dt>Time:</dt><dd>April 2026</dd></div><div><dt>Category:</dt><dd>Art - Technology</dd></div><div><dt>Role:</dt><dd>Brand System Design</dd></div><div><dt>Tool:</dt><dd>Adobe Illustrator - Figma</dd></div></dl><img class="x" src="assets/case/mb_logo_old.webp" width="239" height="239" style="left:809px;top:79px" alt="Old Membit logo" loading="lazy" /><img class="x" src="assets/case/mb_logo_new.webp" width="239" height="239" style="left:809px;top:451px" alt="New Membit logo" loading="lazy" /><img class="x cs-mult" src="assets/case/mb_arrow.webp" width="91" height="91" style="left:1032px;top:346px" alt="" loading="lazy" /><h3 class="x cs-h" data-nav="Logo" style="left:53px;top:763px">Logo Variations</h3><p class="x cs-tag" style="left:170px;top:825px;width:300px">Main Logo</p><p class="x cs-tag" style="left:693px;top:854px;width:300px">Horizontal Logo</p><p class="x cs-tag" style="left:563px;top:1093px;width:300px">Icon Logo</p><img class="x" src="assets/case/mb_logo_main.webp" width="469.5" height="469.5" style="left:85.5px;top:853.5px" alt="Membit main logo" loading="lazy" /><img class="x" src="assets/case/mb_logo_h.webp" width="460" height="192" style="left:613px;top:882.5px" alt="Membit horizontal logo" loading="lazy" /><img class="x" src="assets/case/mb_logo_i.webp" width="199.5" height="199.5" style="left:613.5px;top:1123px" alt="Membit icon logo" loading="lazy" /><h3 class="x cs-h" data-nav="Fonts" style="left:53px;top:1478px">Fonts/Typography</h3><p class="x cs-ab" style="left:74px;top:1598px;font-family:'Montserrat',sans-serif" aria-hidden="true">AB</p><p class="x cs-fontname" style="left:74px;top:1656px;font-family:'Montserrat',sans-serif">Montserrat</p><p class="x cs-glyphs" style="left:74px;top:1705px;width:500px;font-family:'Montserrat',sans-serif">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p><p class="x cs-glyphs" style="left:74px;top:1748px;width:500px;font-family:'Montserrat',sans-serif">abcdefghijklmnopqrstuvwxzy</p><p class="x cs-ab" style="left:643px;top:1587px;font-family:'Inter',sans-serif" aria-hidden="true">AB</p><p class="x cs-fontname" style="left:643px;top:1652px;font-family:'Inter',sans-serif">Inter</p><p class="x cs-glyphs" style="left:643px;top:1701px;width:500px;font-family:'Inter',sans-serif">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p><p class="x cs-glyphs" style="left:643px;top:1744px;width:500px;font-family:'Inter',sans-serif">abcdefghijklmnopqrstuvwxzy</p><h3 class="x cs-h" data-nav="Colors" style="left:53px;top:1941px">Colors</h3><div class="x cs-swatch" style="left:173px;top:2080px;background:#000000" aria-hidden="true"></div><div class="x cs-swatch" style="left:392px;top:2080px;background:#F91212" aria-hidden="true"></div><div class="x cs-swatch" style="left:606px;top:2080px;background:#00F2FF" aria-hidden="true"></div><div class="x cs-swatch" style="left:822px;top:2080px;background:#F2F2F2" aria-hidden="true"></div><p class="x cs-spec" style="left:173px;top:2260px;width:190px">CMYK : 0 0 0 100<br />Pantone : 426 C<br />HSB : 0% 0% 0%<br />RGB : 0 0 0<br />Web : #000000</p><p class="x cs-spec" style="left:392px;top:2260px;width:190px">CMYK : 248 18 18 1<br />Pantone : 179 C<br />HSB : 0% 93% 98%<br />RGB : 249 18 18<br />Web : #F91212</p><p class="x cs-spec" style="left:606px;top:2260px;width:190px">CMYK : 0 242 255 1<br />Pantone : 306 C<br />HSB : 183% 100% 100%<br />RGB : 0 242 255<br />Web : #00F2FF</p><p class="x cs-spec" style="left:822px;top:2260px;width:190px">CMYK : 242 242 242 1<br />Pantone : 663 C<br />HSB : 0% 0% 95%<br />RGB : 242 242 242<br />Web : #F2F2F2</p><img class="x" src="assets/case/mb_icons.webp" width="1159" height="400" style="left:0px;top:2490px" alt="Membit icon set: image, 3D object, camera, presentation and location, on red and on white" loading="lazy" /><h3 class="x cs-h cs-h--white" data-nav="Icons" style="left:53px;top:2532px">Icons</h3><h3 class="x cs-h" data-nav="Stationery" style="left:53px;top:2997px">Stationery</h3><img class="x" src="assets/case/mb_stat1.webp" width="525.5" height="300" style="left:52.5px;top:3090.5px" alt="Membit website wireframe with the new logo" loading="lazy" /><img class="x" src="assets/case/mb_stat2.webp" width="525.5" height="79.5" style="left:596.5px;top:3223px" alt="Membit app banner with the new logo" loading="lazy" /></div><footer class="cs-end"><p class="cs-thanks">Thanks for reading!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div><button class="cs-back" data-back><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15H5M13 7l-8 8 8 8" /></svg>Back to brand systems</button></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+    <section class="case" data-case-view="art" aria-label="Other creative works"><article class="case__card"><div class="cs"><header class="cs-hero art-hero" data-nav="Overview"><h2 class="cs-title">Other Creative Works</h2><p class="cs-sub">Art, design &amp; film photography</p><p class="cs-lead">I love art and many things related to it. Since I was small, I have always joined singing, dancing and drawing clubs. Here are some of my favorite pieces: mixed-media artworks, a motion graphic video, CD covers, posters and my film photography.</p><div class="cs-hero__art art-hero__art"><figure class="art-print art-print--a"><img src="assets/art/thumb/mixed-2.webp" width="2000" height="1500" alt="Paper collage of a golden sun over a city" /></figure><figure class="art-print art-print--b"><img src="assets/art/thumb/mixed-3.webp" width="1500" height="2000" alt="Collage of illustrated postage stamps" /></figure></div></header><section class="cs-sec" data-nav="Mixed media" id="art-mixed"><h3 class="cs-h">Mixed-media Artworks</h3><div class="art-grid art-grid--3"><button class="art-item" data-full="assets/art/mixed-2.webp" aria-label="View larger: Paper collage of a golden sun over a city, bridge and green hills"><img src="assets/art/thumb/mixed-2.webp" width="2000" height="1500" alt="Paper collage of a golden sun over a city, bridge and green hills" loading="lazy" /></button><button class="art-item" data-full="assets/art/mixed-3.webp" aria-label="View larger: Collage of illustrated postage stamps with flowers, cats and mushrooms"><img src="assets/art/thumb/mixed-3.webp" width="1500" height="2000" alt="Collage of illustrated postage stamps with flowers, cats and mushrooms" loading="lazy" /></button><button class="art-item" data-full="assets/art/mixed-4.webp" aria-label="View larger: Mixed-media portrait collage of a smiling girl with dark bangs"><img src="assets/art/thumb/mixed-4.webp" width="1500" height="2000" alt="Mixed-media portrait collage of a smiling girl with dark bangs" loading="lazy" /></button><button class="art-item" data-full="assets/art/mixed-5.webp" aria-label="View larger: Torn-paper collage of a yellow duck character on black paper"><img src="assets/art/thumb/mixed-5.webp" width="1500" height="2000" alt="Torn-paper collage of a yellow duck character on black paper" loading="lazy" /></button><button class="art-item" data-full="assets/art/mixed-1.webp" aria-label="View larger: ART-115 2D Design class wall with a collection of artworks"><img src="assets/art/thumb/mixed-1.webp" width="1500" height="2000" alt="ART-115 2D Design class wall with a collection of artworks" loading="lazy" /></button></div></section><section class="cs-sec" data-nav="Motion graphics" id="art-motion"><h3 class="cs-h">Motion Graphic Video</h3><p><b>Make a cup of Matcha Latte</b>, a tutorial illustration video. Here is the final video:</p><figure class="cs-fig cs-video"><video src="assets/video/matcha-latte.mp4" poster="assets/video/matcha-latte-poster.webp" width="1920" height="1080" controls playsinline preload="none" aria-label="Make a cup of Matcha Latte, motion graphic tutorial video"></video></figure><h4 class="cs-h4">Storyboard</h4><div class="art-grid art-grid--3"><button class="art-item" data-full="assets/art/motion-2.webp" aria-label="View larger: Title card: Let’s make a cup of Matcha Latte"><img src="assets/art/thumb/motion-2.webp" width="2000" height="1125" alt="Title card: Let’s make a cup of Matcha Latte" loading="lazy" /></button><button class="art-item" data-full="assets/art/motion-4.webp" aria-label="View larger: What do we need: milk, hot water, a bowl, matcha powder, a whisk, a sieve, a spoon"><img src="assets/art/thumb/motion-4.webp" width="2000" height="1125" alt="What do we need: milk, hot water, a bowl, matcha powder, a whisk, a sieve, a spoon" loading="lazy" /></button><button class="art-item" data-full="assets/art/motion-3.webp" aria-label="View larger: Sieve the matcha powder into the bowl"><img src="assets/art/thumb/motion-3.webp" width="2000" height="1125" alt="Sieve the matcha powder into the bowl" loading="lazy" /></button><button class="art-item" data-full="assets/art/motion-6.webp" aria-label="View larger: Pour hot water into the powder"><img src="assets/art/thumb/motion-6.webp" width="2000" height="1125" alt="Pour hot water into the powder" loading="lazy" /></button><button class="art-item" data-full="assets/art/motion-5.webp" aria-label="View larger: Whisk the mixture in a zig-zag direction until slightly foamy"><img src="assets/art/thumb/motion-5.webp" width="2000" height="1125" alt="Whisk the mixture in a zig-zag direction until slightly foamy" loading="lazy" /></button><button class="art-item" data-full="assets/art/motion-7.webp" aria-label="View larger: Get a cup and some ice"><img src="assets/art/thumb/motion-7.webp" width="2000" height="1125" alt="Get a cup and some ice" loading="lazy" /></button><button class="art-item" data-full="assets/art/motion-8.webp" aria-label="View larger: Add sweetener of choice"><img src="assets/art/thumb/motion-8.webp" width="2000" height="1125" alt="Add sweetener of choice" loading="lazy" /></button><button class="art-item" data-full="assets/art/motion-10.webp" aria-label="View larger: Pour milk and matcha into the cup"><img src="assets/art/thumb/motion-10.webp" width="2000" height="1125" alt="Pour milk and matcha into the cup" loading="lazy" /></button><button class="art-item" data-full="assets/art/motion-9.webp" aria-label="View larger: Finish! Enjoy! A layered iced matcha latte"><img src="assets/art/thumb/motion-9.webp" width="2000" height="1125" alt="Finish! Enjoy! A layered iced matcha latte" loading="lazy" /></button></div><h4 class="cs-h4">Video outline</h4><ol class="cs-list art-outline"><li>Intro (4s)</li><li>Prepare tools (6s)</li><li>Put matcha powder in the bowl (2s)</li><li>Pour a little hot water (3s)</li><li>Whisk (4s)</li><li>Put ice in the cup (2s)</li><li>Pour sweetener (3s)</li><li>Pour milk in the cup first, then pour the matcha in (3s)</li><li>Outro (5s)</li></ol></section><section class="cs-sec" data-nav="CD covers" id="art-cd"><h3 class="cs-h">CD Covers</h3><p>In this class project, we practiced designing 8 CD covers for fake bands/artists with a music genre of our choice and picked out the 2 best. Here are my 2 best covers, followed by my other works in this project.</p><div class="art-grid art-grid--2"><button class="art-item" data-full="assets/art/cd-1.webp" aria-label="View larger: CD cover “Into Ourselves” by Thomas Ankersmit: a life ring floating on a teal sea"><img src="assets/art/thumb/cd-1.webp" width="1425" height="1425" alt="CD cover “Into Ourselves” by Thomas Ankersmit: a life ring floating on a teal sea" loading="lazy" /></button><button class="art-item" data-full="assets/art/cd-2.webp" aria-label="View larger: CD cover “Rain of Regret”: a vintage vinyl record label"><img src="assets/art/thumb/cd-2.webp" width="1425" height="1425" alt="CD cover “Rain of Regret”: a vintage vinyl record label" loading="lazy" /></button></div><div class="art-grid art-grid--3"><button class="art-item" data-full="assets/art/cd-3.webp" aria-label="View larger: CD cover “Amateur” by An Jong Deok: torn paper revealing blue eyes"><img src="assets/art/thumb/cd-3.webp" width="1425" height="1425" alt="CD cover “Amateur” by An Jong Deok: torn paper revealing blue eyes" loading="lazy" /></button><button class="art-item" data-full="assets/art/cd-4.webp" aria-label="View larger: CD cover “Interests” by Raymond Subes: a hand with red nails holding cherries"><img src="assets/art/thumb/cd-4.webp" width="1425" height="1425" alt="CD cover “Interests” by Raymond Subes: a hand with red nails holding cherries" loading="lazy" /></button><button class="art-item" data-full="assets/art/cd-5.webp" aria-label="View larger: CD cover “Remain Unharmed” by Ted Robbins: ripples on dark water"><img src="assets/art/thumb/cd-5.webp" width="2000" height="2000" alt="CD cover “Remain Unharmed” by Ted Robbins: ripples on dark water" loading="lazy" /></button></div></section><section class="cs-sec" data-nav="Posters" id="art-posters"><h3 class="cs-h">Posters</h3><h4 class="cs-h4">Brand Identity &amp; Digital Campaign Design</h4><p>High-converting visual assets, marketing collateral, and design system components developed for tech startups, e-commerce stores, and digital agencies.</p><div class="art-grid art-grid--posters"><button class="art-item art-item--main" data-full="assets/art/poster-1.webp" aria-label="View larger: Final Life Balance Credit poster: Get $250 by joining activities that support well-being"><img src="assets/art/thumb/poster-1.webp" width="1294" height="2000" alt="Final Life Balance Credit poster: Get $250 by joining activities that support well-being" loading="lazy" /></button><button class="art-item" data-full="assets/art/poster-2.webp" aria-label="View larger: Life Balance Credit poster prototype with campus photos"><img src="assets/art/thumb/poster-2.webp" width="1294" height="2000" alt="Life Balance Credit poster prototype with campus photos" loading="lazy" /></button><button class="art-item" data-full="assets/art/poster-3.webp" aria-label="View larger: Life Balance Credit poster prototype: Earn $250"><img src="assets/art/thumb/poster-3.webp" width="1294" height="2000" alt="Life Balance Credit poster prototype: Earn $250" loading="lazy" /></button></div></section><section class="cs-sec" data-nav="Photography" id="art-film"><h3 class="cs-h">Film Photography</h3><p>One of my favorite hobbies is taking film photos. This activity gives me such a comfortable and emotional feeling. Dancing is another passion of mine; it has been my hobby since I was a small kid, and I love performing, especially with people who share the same passion.</p><div class="art-grid art-grid--3"><button class="art-item" data-full="assets/art/film-1.webp" aria-label="View larger: Film photo of two people walking down a mountain road"><img src="assets/art/thumb/film-1.webp" width="2000" height="1353" alt="Film photo of two people walking down a mountain road" loading="lazy" /></button><button class="art-item" data-full="assets/art/film-2.webp" aria-label="View larger: Film photo inside a glass greenhouse full of plants"><img src="assets/art/thumb/film-2.webp" width="2000" height="1600" alt="Film photo inside a glass greenhouse full of plants" loading="lazy" /></button><button class="art-item" data-full="assets/art/film-3.webp" aria-label="View larger: Film portrait of a girl in pink among painted ceramic figures"><img src="assets/art/thumb/film-3.webp" width="2000" height="1351" alt="Film portrait of a girl in pink among painted ceramic figures" loading="lazy" /></button><button class="art-item" data-full="assets/art/film-4.webp" aria-label="View larger: Dance club group photo in school uniforms"><img src="assets/art/thumb/film-4.webp" width="2000" height="1344" alt="Dance club group photo in school uniforms" loading="lazy" /></button><button class="art-item" data-full="assets/art/film-5.webp" aria-label="View larger: Friends posing together after a dance performance"><img src="assets/art/thumb/film-5.webp" width="1344" height="2000" alt="Friends posing together after a dance performance" loading="lazy" /></button></div></section><footer class="cs-end"><p class="cs-thanks">Thanks for looking!</p><h3 class="cs-more__title">View other projects</h3><div class="cs-more" data-more></div></footer></div></article><nav class="case__nav" aria-label="Sections"></nav><button class="close case__close" data-close aria-label="Close"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button></section>
+    <!-- CASES:END -->
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>
+    <img alt="" />
+    <p class="lightbox__cap"></p>
+    <button class="lightbox__nav lightbox__prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8" /></svg></button>
+    <button class="lightbox__nav lightbox__next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 4l8 8-8 8" /></svg></button>
+    <button class="close lightbox__close" aria-label="Close viewer"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"><path d="M4 4l34 34M38 4L4 38" /></svg></button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  /* ---------- your links: paste each URL between the quotes ---------- */
+  const LINKS = {
+    contact: 'mailto:mudasirazhar40@gmail.com?subject=Project%20Inquiry%20from%20Portfolio',
+    whatsapp: 'https://wa.me/923176981478',
+    calendly: 'https://calendly.com/mudasirazhar40/30min',
+    upwork: 'https://www.upwork.com',
+    linkedin: 'https://www.linkedin.com/in/mudasir-azhar',
+    github: 'https://github.com/mudasirazhar',
+    instagram: 'https://www.instagram.com/i___mudasir',
+    littlecalm: 'https://littlecalmcompany.es/',
+    hlxperts: 'https://blog.hlxperts.com/',
+    nexoraverse: 'https://nexoraverse.com/'
+  };
+
+  (() => {
+    const PORTRAIT = document.documentElement.classList.contains('is-portrait');
+    const DESIGN_W = PORTRAIT ? 1080 : 1440;
+    const DESIGN_H = PORTRAIT ? 2160 : 900;
+    // the box keeps its 1440 × 900 artwork; in portrait it is shifted by (-180, 630)
+    const BOX_CENTER = PORTRAIT ? { x: 541, y: 1080 } : { x: 721, y: 450 };
+    // switching between the tall phone layout and the desk layout rebuilds the page
+    window.PORTRAIT_MQ.addEventListener?.('change', () => location.reload());
+
+    const root = document.documentElement;
+    const stage = document.getElementById('stage');
+    const box = document.getElementById('box');
+    const boxShadow = document.getElementById('boxShadow');
+    const lid = document.getElementById('lid');
+    const overlay = document.getElementById('overlay');
+    const toastEl = document.getElementById('toast');
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const wait = (ms) => new Promise((r) => setTimeout(r, reduceMotion ? 0 : ms));
+
+    /* ---------- scale the 1440×900 design to the window ---------- */
+    let view = { s: 1, x: 0 };
+    function fit() {
+      const vw = innerWidth, vh = innerHeight;
+      // scene: fill the window, anchored to the top so the nav is always visible.
+      // On wide or tall windows the zoom is capped so the whole box (and the
+      // menu above it) always fits; the 3D desk simply extends to the edges.
+      let s = Math.max(vw / DESIGN_W, vh / DESIGN_H);
+      if (!PORTRAIT) s = Math.min(s, vh / 800, vw / 1000);
+      const x = (vw - DESIGN_W * s) / 2;
+      const y = DESIGN_H * s < vh ? (vh - DESIGN_H * s) / 2 : 0;
+      stage.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
+      view = { s, x, y };
+      window.__stageView = { s, x, y, vw, vh };
+      root.classList.toggle('stage-gaps-x', x > 0.5);
+      root.classList.toggle('stage-gaps-y', y > 0.5);
+      dispatchEvent(new Event('stagefit'));
+      // modals: fit entirely inside the window
+      // (popups keep their own 1440 × 900 frame)
+      const m = Math.min(vw / 1440, vh / 900);
+      root.style.setProperty('--s', m);
+      root.style.setProperty('--fx', `${(vw - 1440 * m) / 2}px`);
+      root.style.setProperty('--fy', `${(vh - 900 * m) / 2}px`);
+      // stage scale, so stage text can be sized in screen pixels
+      root.style.setProperty('--ps', s);
+    }
+    addEventListener('resize', fit);
+    fit();
+
+    // tall phone layout: the menu and the close link sit on the screen itself,
+    // at a readable size, instead of on the scaled desk
+    if (PORTRAIT) {
+      document.body.append(document.querySelector('.nav'), document.getElementById('rebox'));
+      // case studies: put each page's pieces in reading order (top to bottom,
+      // left to right), with labels kept next to what they describe
+      document.querySelectorAll('.cs-exact').forEach((page) => {
+        const items = [...page.children].map((el) => ({
+          el,
+          top: parseFloat(el.style.top) || 0,
+          left: parseFloat(el.style.left) || 0,
+        }));
+        const imgs = items.filter((i) => i.el.tagName === 'IMG');
+        const firstHead = Math.min(...items.filter((i) => i.el.classList.contains('cs-h')).map((i) => i.top), Infinity);
+        for (const it of items) {
+          it.key = it.top;
+          const c = it.el.classList;
+          // a white heading printed over a picture goes just above it
+          if (c.contains('cs-h--white')) it.key -= 120;
+          // a caption goes right before the picture below it
+          if (c.contains('cs-tag') && !c.contains('cs-tag--lg')) {
+            const img = imgs.filter((i) => i.top >= it.top && Math.abs(i.left - it.left) < 160).sort((a, b) => a.top - b.top)[0];
+            if (img) { it.key = img.top; it.left = img.left - 0.5; it.fixed = true; img.fixed = true; }
+          }
+          // opening section: text first, then the hero pictures
+          if (it.top < firstHead && it.el.tagName === 'IMG') { it.key = firstHead - 10 + it.top / 1e5; it.fixed = true; }
+        }
+        // text set in side-by-side columns: read each column top to bottom
+        const narrow = items
+          .filter((i) => !i.fixed && i.el.tagName !== 'IMG' && !i.el.matches('.cs-usercard, .cs-bubble, .cs-qmark, .cs-reflect-box, .cs-swatch, .cs-tag, .cs-h')
+            && (parseFloat(i.el.style.width) || 0) < 600)
+          .sort((a, b) => a.top - b.top);
+        const heads = items.filter((i) => i.el.classList.contains('cs-h')).map((i) => i.top);
+        const clusters = [];
+        for (const it of narrow) {
+          const c = clusters[clusters.length - 1];
+          const headBetween = c && heads.some((h) => h > c.last && h <= it.top);
+          if (c && !headBetween && it.top - c.last < 200) { c.items.push(it); c.last = it.top; }
+          else clusters.push({ start: it.top, last: it.top, items: [it] });
+        }
+        for (const c of clusters) {
+          const cols = [...new Set(c.items.map((i) => Math.round(i.left / 80)))].sort((a, b) => a - b);
+          if (cols.length < 2) continue;
+          for (const it of c.items) {
+            const col = cols.indexOf(Math.round(it.left / 80));
+            it.key = c.start + (col * 1e4 + (it.top - c.start)) / 1e6;
+            it.col = true;
+          }
+        }
+        // top to bottom; things on (almost) the same line go left to right
+        items.sort((a, b) => a.key - b.key || a.left - b.left);
+        const ordered = [];
+        for (let i = 0; i < items.length; ) {
+          let j = i + 1;
+          const free = (x) => !x.col && !x.fixed;
+          if (free(items[i])) while (j < items.length && free(items[j]) && items[j].key - items[i].key < 6) j++;
+          ordered.push(...items.slice(i, j).sort((a, b) => (j - i > 1 ? a.left - b.left : 0)));
+          i = j;
+        }
+        items.splice(0, items.length, ...ordered);
+        // videos use the phone's own player controls
+        page.querySelectorAll('video').forEach((v) => { v.controls = true; });
+        items.forEach((i) => page.append(i.el));
+      });
+    }
+
+    /* ---------- desk items: physics-y nudges ---------- */
+    const deskItems = [...document.querySelectorAll('.desk-item')].map((el) => {
+      const cs = getComputedStyle(el);
+      const x = parseFloat(cs.getPropertyValue('--x'));
+      const y = parseFloat(cs.getPropertyValue('--y'));
+      const w = parseFloat(cs.getPropertyValue('--w'));
+      const h = parseFloat(cs.getPropertyValue('--h'));
+      // items cut by the screen edge or tucked under the box may only move
+      // in directions that keep the cut edge hidden: "minX,maxX,minY,maxY"
+      const [minX, maxX, minY, maxY] = (el.dataset.bounds || '-30,30,-30,30').split(',').map(Number);
+      const spin = el.dataset.spin === undefined ? 1 : Number(el.dataset.spin);
+      return { el, cx: x + w / 2, cy: y + h / 2, dx: 0, dy: 0, rot: 0, last: 0, minX, maxX, minY, maxY, spin };
+    });
+
+    const MAX_DRIFT = 30;
+    function nudge(item, dirX, dirY, dist, spin) {
+      const len = Math.hypot(dirX, dirY) || 1;
+      item.dx += (dirX / len) * dist;
+      item.dy += (dirY / len) * dist;
+      const drift = Math.hypot(item.dx, item.dy);
+      if (drift > MAX_DRIFT) {
+        item.dx *= MAX_DRIFT / drift;
+        item.dy *= MAX_DRIFT / drift;
+      }
+      item.dx = Math.max(item.minX, Math.min(item.maxX, item.dx));
+      item.dy = Math.max(item.minY, Math.min(item.maxY, item.dy));
+      item.rot = Math.max(-8, Math.min(8, item.rot + spin * item.spin));
+      item.el.style.setProperty('--dx', `${item.dx.toFixed(2)}px`);
+      item.el.style.setProperty('--dy', `${item.dy.toFixed(2)}px`);
+      item.el.style.setProperty('--rot', `${item.rot.toFixed(2)}deg`);
+    }
+
+    // cursor position + velocity in design coordinates
+    const pointer = { x: 0, y: 0, vx: 0, vy: 0 };
+    addEventListener('pointermove', (e) => {
+      const x = (e.clientX - view.x) / view.s;
+      const y = (e.clientY - view.y) / view.s;
+      pointer.vx = x - pointer.x;
+      pointer.vy = y - pointer.y;
+      pointer.x = x;
+      pointer.y = y;
+    });
+
+    deskItems.forEach((item) => {
+      item.el.querySelector('.hit').addEventListener('pointerenter', () => {
+        const now = performance.now();
+        if (now - item.last < 280) return;
+        item.last = now;
+        // push along the cursor's travel, or away from it if it barely moved
+        let dx = pointer.vx, dy = pointer.vy;
+        if (Math.hypot(dx, dy) < 1.5) {
+          dx = item.cx + item.dx - pointer.x;
+          dy = item.cy + item.dy - pointer.y;
+        }
+        const speed = Math.min(Math.hypot(pointer.vx, pointer.vy), 30);
+        item.el.classList.add('is-bumped');
+        nudge(item, dx, dy, 5 + speed * 0.25, (Math.random() - 0.5) * 5);
+        setTimeout(() => item.el.classList.remove('is-bumped'), 600);
+      });
+    });
+
+    function impact() {
+      deskItems.forEach((item) => {
+        const dx = item.cx - BOX_CENTER.x;
+        const dy = item.cy - BOX_CENTER.y;
+        const closeness = Math.max(0.35, 1 - Math.hypot(dx, dy) / 900);
+        nudge(item, dx, dy, (9 + Math.random() * 9) * closeness, (Math.random() - 0.5) * 7 * closeness);
+      });
+      stage.classList.add('is-shaking');
+      setTimeout(() => stage.classList.remove('is-shaking'), 400);
+    }
+
+    /* ---------- intro: the box drops onto the desk ---------- */
+    async function intro() {
+      // only the desk scene needs to be ready; give up waiting after 2.5s
+      const ready = Promise.all([
+        ...[...stage.querySelectorAll('img')].map((i) => i.decode().catch(() => {})),
+        document.fonts.ready,
+      ]);
+      await Promise.race([ready, wait(2500)]);
+      // the 3D desk (if it can run) gets a little longer to load
+      await Promise.race([window.scene3dReady, wait(1500)]);
+      await wait(250);
+      box.classList.add('is-dropping');
+      boxShadow.classList.add('is-dropping');
+      await wait(640);
+      impact();
+      await wait(560);
+      box.classList.remove('is-dropping');
+      box.classList.add('is-landed');
+    }
+    intro();
+
+    /* ---------- open the box ---------- */
+    let opened = false;
+    async function openBox() {
+      if (opened || closing) return;
+      opened = true;
+      lid.classList.add('is-leaving');
+      await wait(780);
+      box.classList.add('is-revealed');
+      document.body.classList.add('is-open');
+      // when each object finishes popping in, let hover/click transitions take over
+      document.querySelectorAll('.obj').forEach((obj) => {
+        obj.addEventListener('animationend', () => obj.classList.add('is-ready'), { once: true });
+      });
+      await wait(1400);
+      // (skip if the box was closed again in the meantime)
+      if (opened && !closing) lid.hidden = true;
+    }
+
+    /* ---------- close the box again: pack up, lid flies back on ---------- */
+    let closing = false;
+    async function closeBox() {
+      if (!opened || closing || busy) return;
+      closing = true;
+      const hadPopup = overlay.classList.contains('is-active');
+      closeAll();
+      closeDropdown();
+      document.body.classList.remove('is-open');
+      // objects stay put; the lid flies back over them
+      await wait(hadPopup ? 700 : 150); // let a picked-up object settle first
+      lid.hidden = false;
+      lid.classList.remove('is-leaving');
+      void lid.offsetWidth; // restart the animation
+      lid.classList.add('is-returning');
+      // once the lid hangs right above the box it hides everything inside,
+      // so the objects can be packed away unseen before it settles
+      await wait(860);
+      box.classList.remove('is-revealed');
+      document.querySelectorAll('.obj').forEach((o) => o.classList.remove('is-ready', 'is-hovered', 'is-taken', 'is-settling'));
+      await wait(390);
+      impact();
+      lid.classList.remove('is-returning');
+      opened = false;
+      closing = false;
+      lidHit.focus({ preventScroll: true });
+    }
+    document.getElementById('rebox').addEventListener('click', closeBox);
+    const homeBtn = document.getElementById('homeBtn');
+    homeBtn.addEventListener('click', closeBox);
+    homeBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); closeBox(); }
+    });
+    const lidHit = lid.querySelector('.hit');
+    lidHit.addEventListener('click', openBox);
+    lidHit.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBox(); }
+    });
+
+    /* ---------- toast ---------- */
+    let toastTimer;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add('is-shown');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove('is-shown'), 2200);
+    }
+
+    /* ---------- modals ---------- */
+    const MODALS = ['about', 'apps', 'projects', 'brand', 'camera'];
+    let takenObj = null;
+    let busy = false;
+
+    function showModal(name) {
+      overlay.classList.add('is-active');
+      document.querySelectorAll('.modal, .case').forEach((m) => m.classList.remove('is-active'));
+      document.querySelectorAll('video').forEach((v) => v.pause());
+      const modal = document.querySelector(`[data-modal="${name}"]`);
+      modal.classList.remove('is-flipped');
+      modal.scrollTop = 0;
+      modal.classList.add('is-active');
+    }
+
+    function showCase(name) {
+      overlay.classList.add('is-active');
+      document.querySelectorAll('.modal, .case').forEach((m) => m.classList.remove('is-active'));
+      document.querySelectorAll('video').forEach((v) => v.pause());
+      const view = document.querySelector(`[data-case-view="${name}"]`);
+      view.scrollTo({ top: 0, behavior: 'instant' });
+      view.querySelectorAll('img[loading="lazy"]').forEach((img, i) => { if (i < 6) img.loading = 'eager'; });
+      view.classList.add('is-active');
+    }
+
+    function settle(obj) {
+      if (!obj) return;
+      obj.classList.add('is-settling');
+      obj.classList.remove('is-taken');
+      setTimeout(() => obj.classList.remove('is-settling'), 800);
+    }
+
+    function closeAll() {
+      overlay.classList.remove('is-active');
+      document.querySelectorAll('.modal, .case').forEach((m) => m.classList.remove('is-active'));
+      document.querySelectorAll('video').forEach((v) => v.pause());
+      document.querySelectorAll('.is-taken:not(.obj)').forEach((p) => p.classList.remove('is-taken'));
+      // put the lifted object back in the box (keep a reference: takenObj is cleared right away)
+      const obj = takenObj;
+      takenObj = null;
+      setTimeout(() => settle(obj), 150);
+    }
+
+    // pick the object up, then open what it stands for
+    async function take(key) {
+      if (busy) return;
+      busy = true;
+      closeDropdown();
+      const obj = document.querySelector(`.obj[data-key="${key}"]`);
+      if (!opened) {
+        await openBox();
+        await wait(1100);
+      }
+      if (takenObj && takenObj !== obj) settle(takenObj);
+      if (obj) {
+        obj.classList.remove('is-hovered');
+        obj.classList.add('is-taken');
+        takenObj = obj;
+      }
+      await wait(520);
+      if (key === 'swatch') showCase('art');
+      else if (MODALS.includes(key)) showModal(key);
+      busy = false;
+    }
+
+    document.querySelectorAll('.obj').forEach((obj) => {
+      const hit = obj.querySelector('.hit');
+      hit.addEventListener('click', () => take(obj.dataset.key));
+      // touch: first tap shows the label, second tap opens
+      hit.addEventListener('pointerdown', (e) => {
+        // (the tall phone layout shows every label, so one tap opens)
+        if (PORTRAIT || e.pointerType !== 'touch' || obj.classList.contains('is-hovered')) return;
+        e.preventDefault();
+        document.querySelectorAll('.obj.is-hovered').forEach((o) => o.classList.remove('is-hovered'));
+        obj.classList.add('is-hovered');
+      });
+    });
+
+    document.querySelectorAll('[data-open]').forEach((btn) => {
+      btn.addEventListener('click', () => take(btn.dataset.open));
+    });
+
+    document.querySelectorAll('[data-close]').forEach((btn) => btn.addEventListener('click', closeAll));
+    overlay.addEventListener('click', (e) => {
+      // (on phones each popup is a full-screen sheet: tapping its empty space closes it)
+      if (e.target === overlay || e.target.classList.contains('case') || e.target.classList.contains('modal')) closeAll();
+    });
+    addEventListener('keydown', (e) => {
+      // with the artwork viewer open, Esc only closes the viewer
+      if (e.key === 'Escape' && document.getElementById('lightbox').hidden) { closeAll(); closeDropdown(); }
+    });
+
+    // About ⇄ Experience flip
+    const aboutModal = document.querySelector('[data-modal="about"]');
+    const profile = aboutModal.querySelector('.profile');
+    document.querySelectorAll('[data-flip]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        profile.classList.remove('is-turning');
+        void profile.offsetWidth;
+        profile.classList.add('is-turning');
+        aboutModal.classList.toggle('is-flipped', btn.dataset.flip === 'exp');
+      });
+    });
+    profile.addEventListener('animationend', (e) => {
+      if (e.animationName === 'flipLift') profile.classList.remove('is-turning');
+    });
+
+    // projects chooser / app icons → case study
+    document.querySelectorAll('.project, .app-icon, .brand-card').forEach((card) => {
+      card.addEventListener('click', async () => {
+        card.classList.add('is-taken');
+        await wait(420);
+        showCase(card.dataset.case);
+        card.classList.remove('is-taken');
+      });
+    });
+
+    /* ---------- case studies ---------- */
+    const PROJECTS = [
+      { key: 'nextplay', kind: 'UX/UI', name: 'Sport Coaching Dashboard Redesign', img: 'assets/case/card_nextplay.webp' },
+      { key: 'resipe', kind: 'UX/UI', name: 'Resipe: Smart Cooking App', img: 'assets/case/card_resipe.webp' },
+      { key: 'mimy', kind: 'UX/UI', name: 'MIMY Photobooth', img: 'assets/case/card_mimy.webp' },
+      { key: 'eluvo', kind: 'Marketing', name: 'Eluvo: Retro Film Camera', icon: 'assets/case/el_icon.webp' },
+      { key: 'mentation', kind: 'App previews', name: 'Mentation: Brain Training', icon: 'assets/case/me_icon.webp' },
+      { key: 'pausora', kind: 'App previews', name: 'Screen Time & Focus: Pausora', icon: 'assets/case/pa_icon.webp' },
+      { key: 'cano', kind: 'Brand system', name: 'CANO Re-branding', icon: 'assets/case/ca_logo_new.webp' },
+      { key: 'membit', kind: 'Brand system', name: 'Membit Re-branding', icon: 'assets/case/mb_logo_new.webp' },
+      { key: 'art', kind: 'Art & design', name: 'Other Creative Works', img: 'assets/art/thumb/cd-1.webp' },
+    ];
+
+    document.querySelectorAll('.case').forEach((view) => {
+      const key = view.dataset.caseView;
+
+      // "View other projects": every project except this one
+      view.querySelector('[data-more]').innerHTML = PROJECTS.filter((p) => p.key !== key).map((p) => `
+        <button class="cs-card" data-goto="${p.key}">
+          <span class="cs-card__img${p.icon ? ' cs-card__img--icon' : ''}"><img src="${p.icon || p.img}" alt="" loading="lazy" /></span>
+          <span class="cs-card__body"><span class="cs-card__kind">${p.kind}</span><span class="cs-card__name">${p.name}</span></span>
+        </button>`).join('');
+
+      // side nav built from the sections on the page
+      const nav = view.querySelector('.case__nav');
+      const sections = [...view.querySelectorAll('[data-nav]')];
+      if (sections.length < 2) { nav.hidden = true; return; }
+      nav.innerHTML = sections.map((s) => `<button>${s.dataset.nav}</button>`).join('');
+      const buttons = [...nav.querySelectorAll('button')];
+      const topOf = (el) => el.getBoundingClientRect().top - view.getBoundingClientRect().top + view.scrollTop;
+      buttons.forEach((b, i) => b.addEventListener('click', () => {
+        view.scrollTo({ top: topOf(sections[i]) - 40, behavior: 'smooth' });
+      }));
+      const mark = () => {
+        const line = innerHeight * 0.35;
+        let current = 0;
+        sections.forEach((s, i) => { if (s.getBoundingClientRect().top <= line) current = i; });
+        buttons.forEach((b, i) => b.classList.toggle('is-current', i === current));
+      };
+      view.addEventListener('scroll', mark, { passive: true });
+      mark();
+    });
+
+    // contact: open the little email draft instead of leaving the page
+    document.getElementById('contactLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeDropdown();
+      showModal('contact');
+    });
+
+    /* ---------- artwork viewer ---------- */
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = lightbox.querySelector('img');
+    const lbCap = lightbox.querySelector('.lightbox__cap');
+    let lbItems = [];
+    let lbIndex = 0;
+    function lbShow(i) {
+      lbIndex = (i + lbItems.length) % lbItems.length;
+      const item = lbItems[lbIndex];
+      const alt = item.querySelector('img').alt;
+      lbImg.src = item.dataset.full;
+      lbImg.alt = alt;
+      lbCap.textContent = alt;
+    }
+    function lbClose() {
+      lightbox.classList.remove('is-open');
+      setTimeout(() => { lightbox.hidden = true; }, 300);
+    }
+    document.querySelectorAll('.art-item').forEach((item) => item.addEventListener('click', () => {
+      lbItems = [...item.closest('.cs').querySelectorAll('.art-item')];
+      lbShow(lbItems.indexOf(item));
+      lightbox.hidden = false;
+      requestAnimationFrame(() => lightbox.classList.add('is-open'));
+    }));
+    lightbox.querySelector('.lightbox__prev').addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbIndex - 1); });
+    lightbox.querySelector('.lightbox__next').addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbIndex + 1); });
+    lightbox.addEventListener('click', (e) => { if (e.target !== lbImg) lbClose(); });
+    addEventListener('keydown', (e) => {
+      if (lightbox.hidden) return;
+      if (e.key === 'ArrowLeft') lbShow(lbIndex - 1);
+      if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+      if (e.key === 'Escape') { e.stopImmediatePropagation(); lbClose(); }
+    }, true);
+
+    // back: return to the list each project belongs to
+    const LIST_OF = { littlecalm: 'projects', hlxperts: 'projects', nexoraverse: 'projects', eluvo: 'apps', mentation: 'apps', pausora: 'apps', cano: 'brand', membit: 'brand' };
+    document.querySelectorAll('[data-back]').forEach((btn) => btn.addEventListener('click', () => {
+      showModal(LIST_OF[btn.closest('.case').dataset.caseView]);
+    }));
+
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('[data-goto]');
+      if (card) showCase(card.dataset.goto);
+    });
+
+    // the MIMY video opens on its thumbnail; the player controls appear once it starts
+    document.querySelectorAll('.cs-play').forEach((btn) => btn.addEventListener('click', () => {
+      const video = btn.previousElementSibling;
+      video.controls = true;
+      video.play();
+      btn.remove();
+    }));
+
+    // images not exported from Figma yet keep their space with a soft placeholder
+    document.querySelectorAll('.cs img, .cs-card img, .brand-card img').forEach((img) => {
+      const miss = () => {
+        img.classList.add('is-missing');
+        if (img.getAttribute('width')) img.style.aspectRatio = `${img.getAttribute('width')} / ${img.getAttribute('height')}`;
+        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+      };
+      if (img.complete && !img.naturalWidth) miss();
+      else img.addEventListener('error', miss, { once: true });
+    });
+
+    // links: filled from LINKS at the top of this script
+    document.querySelectorAll('[data-link]').forEach((a) => {
+      const url = LINKS[a.dataset.link];
+      if (url) a.href = url;
+      else a.addEventListener('click', (e) => { e.preventDefault(); toast('Link coming soon!'); });
+    });
+
+    /* ---------- nav dropdown + contact ---------- */
+    const projectsWrap = document.querySelector('.nav__projects');
+    const projectsToggle = document.getElementById('projectsToggle');
+    function closeDropdown() {
+      projectsWrap.classList.remove('is-open');
+      projectsToggle.setAttribute('aria-expanded', 'false');
+    }
+    projectsToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = projectsWrap.classList.toggle('is-open');
+      projectsToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    document.addEventListener('click', (e) => {
+      if (!projectsWrap.contains(e.target)) closeDropdown();
+    });
+
+  })();
+  </script>
+
+  <!-- SPIDER-MAN ANIMATED WEB CANVAS (Subtle Marvel ambient effect) -->
+  <canvas id="spidey-canvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.65;" aria-hidden="true"></canvas>
+  <script>
+  (function initSpideyAmbient() {
+    const canvas = document.getElementById('spidey-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let t = 0;
+    function render() {
+      ctx.clearRect(0, 0, W, H);
+      t += 0.005;
+
+      // Spider web nodes from corners
+      const corners = [
+        { x: 0, y: 0, a1: 0, a2: Math.PI / 2 },
+        { x: W, y: 0, a1: Math.PI / 2, a2: Math.PI },
+        { x: W, y: H, a1: Math.PI, a2: 1.5 * Math.PI },
+        { x: 0, y: H, a1: 1.5 * Math.PI, a2: 2 * Math.PI }
+      ];
+
+      corners.forEach((c, idx) => {
+        const radBase = 120 + 20 * Math.sin(t + idx);
+        const rays = 6;
+        for (let i = 0; i <= rays; i++) {
+          const angle = c.a1 + (c.a2 - c.a1) * (i / rays);
+          const len = radBase * (1.2 + 0.15 * Math.sin(t * 1.5 + i));
+          ctx.beginPath();
+          ctx.moveTo(c.x, c.y);
+          ctx.lineTo(c.x + Math.cos(angle) * len, c.y + Math.sin(angle) * len);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+
+          // Spidey Red glowing end dot
+          if (i % 2 === 0) {
+            ctx.beginPath();
+            ctx.arc(c.x + Math.cos(angle) * len, c.y + Math.sin(angle) * len, 1.8, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(204, 0, 0, 0.4)';
+            ctx.fill();
+          }
+        }
+        // Concentric web rings
+        for (let r = 1; r <= 4; r++) {
+          const rDist = (radBase / 4) * r;
+          ctx.beginPath();
+          ctx.arc(c.x, c.y, rDist, c.a1, c.a2);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      });
+
+      requestAnimationFrame(render);
+    }
+    render();
+  })();
+  </script>
+</body>
+</html>
